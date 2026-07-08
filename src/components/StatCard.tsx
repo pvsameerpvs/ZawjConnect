@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from './Icon';
 import { colors } from '../constants/colors';
 
 interface StatCardProps {
   title: string;
   value: string | number;
   subtitle?: string;
-  icon: keyof typeof Ionicons.glyphMap;
+  icon: string;
   iconColor?: string;
 }
 
@@ -26,7 +26,7 @@ const StatCard: React.FC<StatCardProps> = ({
         className="w-9 h-9 rounded-xl items-center justify-center mb-2"
         style={{ backgroundColor: iconColor + '12' }}
       >
-        <Ionicons name={icon} size={16} color={iconColor} />
+        <Icon name={icon} size={16} color={iconColor} />
       </View>
       <Text className="text-xl font-bold text-ink">{value}</Text>
       <Text className="text-xs text-muted mt-0.5">{title}</Text>

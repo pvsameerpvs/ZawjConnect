@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { View, Text } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/Icon';
 import { colors } from '../../constants/colors';
 import ScreenWrapper from '../../components/ScreenWrapper';
 import IslamicCard from '../../components/IslamicCard';
@@ -30,7 +30,7 @@ const PrayerTrackerScreen: React.FC = () => {
   const totalPrayers = weekData.reduce((sum, d) => sum + d.total, 0);
   const weekPercentage = Math.round((totalCompleted / totalPrayers) * 100);
 
-  const getDayIcon = (completed: number, total: number): keyof typeof Ionicons.glyphMap => {
+  const getDayIcon = (completed: number, total: number): string => {
     if (completed === total) return 'checkmark-circle';
     if (completed === 0) return 'close-circle';
     return 'time';
@@ -70,7 +70,7 @@ const PrayerTrackerScreen: React.FC = () => {
                 className="w-[48%] mb-4 p-4"
               >
                 <View className="items-center">
-                  <Ionicons
+                  <Icon
                     name={getDayIcon(item.completed, item.total)}
                     size={20}
                     color={iconColor}
@@ -91,13 +91,13 @@ const PrayerTrackerScreen: React.FC = () => {
 
         <IslamicCard variant="surface" className="mb-4">
           <View className="flex-row items-center mb-2">
-            <Ionicons name="trophy-outline" size={20} color={colors.accent} />
+            <Icon name="trophy-outline" size={20} color={colors.accent} />
             <Text className="text-ink font-semibold text-base ml-2">Streak</Text>
           </View>
           <View className="flex-row items-center justify-between">
             <Text className="text-muted text-sm">Current streak</Text>
             <View className="flex-row items-center">
-              <Ionicons name="flame" size={16} color={colors.accent} />
+              <Icon name="flame" size={16} color={colors.accent} />
               <Text className="text-accent font-bold text-lg ml-1">3 days</Text>
             </View>
           </View>

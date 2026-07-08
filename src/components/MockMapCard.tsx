@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from './Icon';
 import { colors } from '../constants/colors';
 
 interface MockMapCardProps {
@@ -18,14 +18,14 @@ const MockMapCard: React.FC<MockMapCardProps> = ({
     >
       <View className="bg-ink h-44 relative">
         <View className="absolute top-8 left-8 items-center">
-          <Ionicons name="location" size={24} color={colors.accent} />
+          <Icon name="location-outline" size={24} color={colors.accent} />
           <View className="bg-white/90 px-2 py-1 rounded-lg mt-1">
             <Text className="text-xs font-semibold text-ink">Sameer</Text>
             <Text className="text-[10px] text-muted">Dubai, UAE</Text>
           </View>
         </View>
         <View className="absolute bottom-8 right-8 items-center">
-          <Ionicons name="location" size={24} color={colors.primary} />
+          <Icon name="location-outline" size={24} color={colors.primary} />
           <View className="bg-white/90 px-2 py-1 rounded-lg mt-1">
             <Text className="text-xs font-semibold text-ink">Sherin</Text>
             <Text className="text-[10px] text-muted">Kerala, India</Text>

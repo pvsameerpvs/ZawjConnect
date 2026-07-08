@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/Icon';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import ScreenWrapper from '../../components/ScreenWrapper';
@@ -55,7 +55,7 @@ const QuranScreen: React.FC = () => {
             <AppButton
               title="Continue Reading"
               variant="primary"
-              icon={<Ionicons name="play" size={16} color="white" />}
+              icon={<Icon name="play" size={16} color="white" />}
               onPress={() => navigation.navigate(ROUTES.QURAN_READER as 'QuranReader', {})}
             />
           </View>
@@ -77,7 +77,7 @@ const QuranScreen: React.FC = () => {
                     <Text className="text-base font-semibold text-ink">{surah.name}</Text>
                     <Text className="text-xs text-muted">{surah.englishName} · {surah.verses} verses · {surah.revealed}</Text>
                   </View>
-                  <Ionicons name="chevron-forward" size={16} color={colors.muted} />
+                  <Icon name="chevron-forward" size={16} color={colors.muted} />
                 </View>
               </IslamicCard>
             </View>

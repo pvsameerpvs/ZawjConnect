@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/Icon';
 import ScreenWrapper from '../../components/ScreenWrapper';
 import GradientHeader from '../../components/GradientHeader';
 import DhikrCounter from '../../components/DhikrCounter';
@@ -94,7 +94,7 @@ const DhikrScreen: React.FC = () => {
         <IslamicCard variant="white" className="mt-8">
           <View className="flex-row items-center mb-4">
             <View className="w-10 h-10 rounded-full bg-primary/10 items-center justify-center mr-3">
-              <Ionicons name="stats-chart" size={20} color={colors.primary} />
+              <Icon name="stats-chart" size={20} color={colors.primary} />
             </View>
             <View className="flex-1">
               <Text className="text-base font-semibold text-ink">

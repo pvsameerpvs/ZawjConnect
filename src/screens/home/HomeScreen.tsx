@@ -1,6 +1,6 @@
 import React, { useMemo, useRef } from 'react';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/Icon';
 import { useNavigation } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -90,7 +90,7 @@ const HomeScreen: React.FC = () => {
             <Text className="text-accent-light text-xs mt-0.5">{mockHijriDate}</Text>
           </View>
           <View className="w-10 h-10 rounded-full bg-white/10 items-center justify-center border border-white/20">
-            <Ionicons name="person" size={20} color={colors.accentLight} />
+            <Icon name="person-outline" size={20} color={colors.accentLight} />
           </View>
         </View>
 
@@ -101,7 +101,7 @@ const HomeScreen: React.FC = () => {
           className="mx-5 mb-4 bg-white/10 rounded-2xl px-4 py-3 flex-row items-center border border-white/10"
         >
           <View className="w-10 h-10 rounded-xl bg-accent/20 items-center justify-center mr-3">
-            <Ionicons name="moon-outline" size={20} color={colors.accentLight} />
+            <Icon name="moon-outline" size={20} color={colors.accentLight} />
           </View>
           <View className="flex-1">
             <Text className="text-white/60 text-xs">Next Prayer</Text>
@@ -127,7 +127,7 @@ const HomeScreen: React.FC = () => {
             >
               <View className="flex-row items-center mb-2">
                 <View className="w-8 h-8 rounded-xl bg-primary/10 items-center justify-center mr-2">
-                  <Ionicons name="moon-outline" size={16} color={colors.primary} />
+                  <Icon name="moon-outline" size={16} color={colors.primary} />
                 </View>
                 <Text className="text-sm font-semibold text-ink">Salah</Text>
               </View>
@@ -142,7 +142,7 @@ const HomeScreen: React.FC = () => {
             >
               <View className="flex-row items-center mb-2">
                 <View className="w-8 h-8 rounded-xl bg-ink/10 items-center justify-center mr-2">
-                  <Ionicons name="book-outline" size={16} color={colors.ink} />
+                  <Icon name="book-outline" size={16} color={colors.primary} />
                 </View>
                 <Text className="text-sm font-semibold text-ink">Quran</Text>
               </View>
@@ -163,7 +163,7 @@ const HomeScreen: React.FC = () => {
             >
               <View className="flex-row items-center mb-2">
                 <View className="w-8 h-8 rounded-xl bg-accent/10 items-center justify-center mr-2">
-                  <Ionicons name="repeat-outline" size={16} color={colors.accent} />
+                  <Icon name="repeat-outline" size={16} color={colors.accent} />
                 </View>
                 <Text className="text-sm font-semibold text-ink">Dhikr</Text>
               </View>
@@ -182,7 +182,7 @@ const HomeScreen: React.FC = () => {
             style={{ shadowColor: colors.cardShadow, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 1, shadowRadius: 6, elevation: 1 }}
           >
             <View className="w-8 h-8 rounded-xl bg-accent/10 items-center justify-center mr-3">
-              <Ionicons name="calendar-outline" size={16} color={colors.accent} />
+              <Icon name="calendar-outline" size={16} color={colors.accent} />
             </View>
             <View className="flex-1">
               <Text className="text-xs text-muted">{mockGregorianDate}</Text>
@@ -197,28 +197,28 @@ const HomeScreen: React.FC = () => {
           <IslamicCard onPress={() => handleNavigate('Spouse')}>
             <View className="flex-row items-center mb-3">
               <View className="w-8 h-8 rounded-xl bg-rose-100 items-center justify-center mr-3">
-                <Ionicons name="heart-outline" size={16} color={colors.error} />
+                <Icon name="heart-outline" size={16} color={colors.error} />
               </View>
               <Text className="text-base font-semibold text-ink flex-1">{mockUser.spouse}'s Progress</Text>
-              <Ionicons name="chevron-forward" size={16} color={colors.muted} />
+              <Icon name="chevron-forward" size={16} color={colors.muted} />
             </View>
             <View className="flex-row gap-1.5">
               <View className="flex-1 bg-surface rounded-xl py-2.5 items-center">
-                <Ionicons name="moon-outline" size={16} color={colors.primary} />
+                <Icon name="moon-outline" size={16} color={colors.primary} />
                 <Text className="text-sm font-bold text-ink mt-0.5">
                   {mockSpouseProgress.salah.completed}/{mockSpouseProgress.salah.total}
                 </Text>
                 <Text className="text-[10px] text-muted">Salah</Text>
               </View>
               <View className="flex-1 bg-surface rounded-xl py-2.5 items-center">
-                <Ionicons name="book-outline" size={16} color={colors.ink} />
+                <Icon name="book-outline" size={16} color={colors.primary} />
                 <Text className="text-sm font-bold text-ink mt-0.5">
                   {mockSpouseProgress.quran.ayahsToday}
                 </Text>
                 <Text className="text-[10px] text-muted">Ayahs</Text>
               </View>
               <View className="flex-1 bg-surface rounded-xl py-2.5 items-center">
-                <Ionicons name="repeat-outline" size={16} color={colors.accent} />
+                <Icon name="repeat-outline" size={16} color={colors.accent} />
                 <Text className="text-sm font-bold text-ink mt-0.5">
                   {mockSpouseProgress.dhikr.percentage}%
                 </Text>
@@ -247,7 +247,7 @@ const HomeScreen: React.FC = () => {
                     <View className="w-10 h-10 rounded-xl items-center justify-center mb-1.5"
                       style={{ backgroundColor: action.color + '12' }}
                     >
-                      <Ionicons name={action.icon} size={20} color={action.color} />
+                      <Icon name={action.icon} size={20} color={action.color} />
                     </View>
                     <Text className="text-xs font-medium text-ink text-center">{action.title}</Text>
                   </TouchableOpacity>

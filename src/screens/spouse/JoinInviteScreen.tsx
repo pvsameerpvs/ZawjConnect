@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/Icon';
 import { useNavigation } from '@react-navigation/native';
 import { colors } from '../../constants/colors';
 import { mockUser, mockSpouse } from '../../constants/mockData';
@@ -51,7 +51,7 @@ const JoinInviteScreen: React.FC = () => {
             <IslamicCard variant="surface">
               <View className="items-center py-4">
                 <View className="w-16 h-16 rounded-full bg-success/10 items-center justify-center mb-4">
-                  <Ionicons name="checkmark-circle" size={28} color={colors.success} />
+                  <Icon name="checkmark-circle" size={28} color={colors.success} />
                 </View>
                 <Text className="text-xl font-bold text-ink text-center">
                   Connected with {connectedName}!

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/Icon';
 import { TouchableOpacity } from 'react-native';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -44,7 +44,7 @@ const QuranReaderScreen: React.FC = () => {
         subtitle={`Ayah ${currentIndex + 1} of ${totalAyahs}`}
         rightIcon={
           <TouchableOpacity onPress={() => setBookmarked(!bookmarked)} activeOpacity={0.7}>
-            <Ionicons
+            <Icon
               name={bookmarked ? 'bookmark' : 'bookmark-outline'}
               size={24}
               color={colors.white}
@@ -78,7 +78,7 @@ const QuranReaderScreen: React.FC = () => {
           <AppButton
             title="Previous"
             variant="ghost"
-            icon={<Ionicons name="chevron-back" size={16} color={currentIndex === 0 ? colors.muted : colors.primary} />}
+            icon={<Icon name="chevron-back" size={16} color={currentIndex === 0 ? colors.muted : colors.primary} />}
             onPress={goPrev}
             disabled={currentIndex === 0}
             className={currentIndex === 0 ? 'opacity-40' : ''}
@@ -87,7 +87,7 @@ const QuranReaderScreen: React.FC = () => {
           <AppButton
             title="Next"
             variant="ghost"
-            icon={<Ionicons name="chevron-forward" size={16} color={currentIndex === totalAyahs - 1 ? colors.muted : colors.primary} />}
+            icon={<Icon name="chevron-forward" size={16} color={currentIndex === totalAyahs - 1 ? colors.muted : colors.primary} />}
             onPress={goNext}
             disabled={currentIndex === totalAyahs - 1}
             className={currentIndex === totalAyahs - 1 ? 'opacity-40' : ''}

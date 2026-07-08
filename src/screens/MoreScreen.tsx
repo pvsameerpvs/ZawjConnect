@@ -8,12 +8,12 @@ import { colors } from '../constants/colors';
 
 const menuItems = [
   { title: 'Dua', icon: 'hand-left' as const, iconColor: colors.primary, route: 'Dua' },
-  { title: 'Tahajjud', icon: 'moon' as const, iconColor: colors.ink, route: 'Tahajjud' },
+  { title: 'Tahajjud', icon: 'moon' as const, iconColor: colors.primary, route: 'Tahajjud' },
   { title: 'Sunnah Fasting', icon: 'restaurant' as const, iconColor: colors.primary, route: 'Fasting' },
   { title: 'Zakat', icon: 'calculator' as const, iconColor: colors.accent, route: 'Zakat' },
   { title: 'Spouse', icon: 'people' as const, iconColor: colors.primary, route: 'Spouse' },
   { title: 'Live Location', icon: 'location' as const, iconColor: colors.primary, route: 'Location' },
-  { title: 'Hajj & Umrah', icon: 'airplane' as const, iconColor: colors.ink, route: 'HajjUmrah' },
+  { title: 'Hajj & Umrah', icon: 'airplane' as const, iconColor: colors.accent, route: 'HajjUmrah' },
   { title: 'Notifications', icon: 'notifications' as const, iconColor: colors.accent, route: 'Notifications' },
   { title: 'Privacy', icon: 'shield-checkmark' as const, iconColor: colors.primary, route: 'Privacy' },
   { title: 'Settings', icon: 'settings' as const, iconColor: colors.muted, route: 'Settings' },

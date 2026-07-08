@@ -16,6 +16,7 @@ const variantStyles: Record<CardVariant, { bg: string; border: string; hasShadow
   surface: { bg: 'bg-surface', border: '', hasShadow: false },
   ink: { bg: 'bg-ink', border: '', hasShadow: false },
   gradient: { bg: '', border: '', hasShadow: false },
+  glass: { bg: 'bg-white/90', border: 'border border-white/60', hasShadow: false },
 };
 
 const IslamicCard: React.FC<IslamicCardProps> = ({
@@ -35,9 +36,14 @@ const IslamicCard: React.FC<IslamicCardProps> = ({
     elevation: 1,
   } : {};
 
+  const commonProps = {
+    activeOpacity: onPress ? 0.7 : 1,
+  };
+
   if (variant === 'gradient') {
+    const Wrapper = onPress ? TouchableOpacity : View;
     return (
-      <TouchableOpacity onPress={onPress} disabled={!onPress} activeOpacity={onPress ? 0.7 : 1}>
+      <Wrapper onPress={onPress} disabled={!onPress} {...commonProps}>
         <LinearGradient
           colors={[colors.ink, colors.primaryDark]}
           start={{ x: 0, y: 0 }}
@@ -46,7 +52,7 @@ const IslamicCard: React.FC<IslamicCardProps> = ({
         >
           {children}
         </LinearGradient>
-      </TouchableOpacity>
+      </Wrapper>
     );
   }
 
@@ -55,7 +61,7 @@ const IslamicCard: React.FC<IslamicCardProps> = ({
     <CardWrapper
       onPress={onPress}
       disabled={!onPress}
-      activeOpacity={onPress ? 0.7 : 1}
+      {...commonProps}
       className={cardStyle}
       style={shadowStyle}
     >

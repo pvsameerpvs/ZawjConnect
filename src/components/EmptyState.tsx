@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from './Icon';
 import { colors } from '../constants/colors';
 
 interface EmptyStateProps {
   title: string;
   description?: string;
-  icon?: keyof typeof Ionicons.glyphMap;
+  icon?: string;
 }
 
 const EmptyState: React.FC<EmptyStateProps> = ({
@@ -17,7 +17,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({
   return (
     <View className="flex-1 items-center justify-center py-12">
       <View className="w-16 h-16 rounded-full bg-surface items-center justify-center mb-4">
-        <Ionicons name={icon} size={24} color={colors.muted} />
+        <Icon name={icon} size={24} color={colors.muted} />
       </View>
       <Text className="text-base font-semibold text-ink text-center">{title}</Text>
       {description && (

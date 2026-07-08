@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from './Icon';
 import * as Haptics from 'expo-haptics';
 import { colors } from '../constants/colors';
 
@@ -59,7 +59,7 @@ const DhikrCounter: React.FC<DhikrCounterProps> = ({
         activeOpacity={0.7}
         className="flex-row items-center px-5 py-2.5 rounded-full bg-surface"
       >
-        <Ionicons name="refresh" size={16} color={colors.primary} />
+        <Icon name="refresh" size={16} color={colors.primary} />
         <Text className="text-sm font-semibold text-primary ml-2">Reset</Text>
       </TouchableOpacity>
     </View>

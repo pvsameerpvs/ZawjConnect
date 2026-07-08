@@ -14,12 +14,12 @@ interface AppButtonProps {
   textClassName?: string;
 }
 
-const variantStyles: Record<ButtonVariant, { bg: string; text: string; border: string }> = {
-  primary: { bg: 'bg-primary', text: 'text-white', border: '' },
-  secondary: { bg: 'bg-white', text: 'text-primary', border: 'border border-borderLight' },
-  accent: { bg: 'bg-accent', text: 'text-ink', border: '' },
-  ghost: { bg: 'bg-transparent', text: 'text-primary', border: '' },
-  danger: { bg: 'bg-error', text: 'text-white', border: '' },
+const variantStyles: Record<ButtonVariant, { bg: string; text: string; border: string; shadow: boolean }> = {
+  primary: { bg: 'bg-primary', text: 'text-white', border: '', shadow: true },
+  secondary: { bg: 'bg-white', text: 'text-primary', border: 'border border-borderLight', shadow: false },
+  accent: { bg: 'bg-accent', text: 'text-white', border: '', shadow: false },
+  ghost: { bg: 'bg-transparent', text: 'text-primary', border: '', shadow: false },
+  danger: { bg: 'bg-error', text: 'text-white', border: '', shadow: false },
 };
 
 const AppButton: React.FC<AppButtonProps> = ({
@@ -34,19 +34,28 @@ const AppButton: React.FC<AppButtonProps> = ({
 }) => {
   const styles = variantStyles[variant];
 
+  const shadowStyle = styles.shadow ? {
+    shadowColor: colors.primary,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
+    elevation: 4,
+  } : {};
+
   return (
     <TouchableOpacity
       onPress={onPress}
       disabled={disabled || loading}
-      activeOpacity={0.8}
+      activeOpacity={0.85}
       className={`h-[50px] rounded-2xl flex-row items-center justify-center ${styles.bg} ${styles.border} ${disabled ? 'opacity-50' : ''} ${className}`}
+      style={shadowStyle}
     >
       {loading ? (
-        <ActivityIndicator color={variant === 'primary' || variant === 'accent' ? colors.white : colors.primary} />
+        <ActivityIndicator color={styles.text === 'text-white' ? colors.white : colors.primary} />
       ) : (
         <View className="flex-row items-center justify-center">
           {icon && <View className="mr-2">{icon}</View>}
-           <Text className={`text-base font-semibold ${styles.text} ${textClassName}`}>
+           <Text className={`text-base font-semibold tracking-wide ${styles.text} ${textClassName}`}>
             {title}
           </Text>
         </View>

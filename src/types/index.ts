@@ -69,4 +69,4 @@ export type ScreenBackground = 'surface' | 'ink' | 'white' | 'gradient';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'accent' | 'ghost' | 'danger';
 
-export type CardVariant = 'white' | 'surface' | 'ink' | 'gradient';
+export type CardVariant = 'white' | 'surface' | 'ink' | 'gradient' | 'glass';

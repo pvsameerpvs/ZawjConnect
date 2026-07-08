@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from './Icon';
 import { colors } from '../constants/colors';
 
 interface AppInputProps {
@@ -11,7 +11,7 @@ interface AppInputProps {
   keyboardType?: 'default' | 'numeric' | 'email-address' | 'phone-pad';
   multiline?: boolean;
   error?: string;
-  icon?: keyof typeof Ionicons.glyphMap;
+  icon?: string;
   secureTextEntry?: boolean;
   onToggleSecure?: () => void;
 }
@@ -38,7 +38,7 @@ const AppInput: React.FC<AppInputProps> = ({
       >
         {icon && (
           <View className="pl-4">
-            <Ionicons name={icon} size={16} color={colors.muted} />
+            <Icon name={icon} size={16} color={colors.muted} />
           </View>
         )}
         <TextInput
@@ -55,7 +55,7 @@ const AppInput: React.FC<AppInputProps> = ({
         />
         {secureTextEntry !== undefined && onToggleSecure && (
           <TouchableOpacity onPress={onToggleSecure} className="pr-4">
-            <Ionicons name={secureTextEntry ? 'eye-off' : 'eye'} size={16} color={colors.muted} />
+            <Icon name={secureTextEntry ? 'eye-off' : 'eye'} size={16} color={colors.muted} />
           </TouchableOpacity>
         )}
       </View>

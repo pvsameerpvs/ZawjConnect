@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/Icon';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import ScreenWrapper from '../../components/ScreenWrapper';
@@ -25,7 +25,7 @@ const LoginScreen: React.FC = () => {
           style={{ shadowColor: 'rgba(61, 53, 42, 0.06)', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 1, shadowRadius: 12, elevation: 2 }}
         >
           <View className="w-14 h-14 rounded-full bg-surface items-center justify-center mb-4">
-            <Ionicons name="moon" size={24} color={colors.accent} />
+            <Icon name="moon" size={24} color={colors.accent} />
           </View>
           <Text className="text-ink text-2xl font-bold mb-1">ZawjConnect</Text>
           <Text className="text-muted text-sm mb-8">Welcome back</Text>
@@ -34,7 +34,7 @@ const LoginScreen: React.FC = () => {
             title="Google Sign In"
             variant="secondary"
             onPress={handleNavigateToDemo}
-            icon={<Ionicons name="logo-google" size={16} color={colors.primary} />}
+            icon={<Icon name="logo-google" size={16} color={colors.primary} />}
             className="w-full mb-3"
           />
           <AppButton

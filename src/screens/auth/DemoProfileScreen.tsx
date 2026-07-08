@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/Icon';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import ScreenWrapper from '../../components/ScreenWrapper';
@@ -28,7 +28,7 @@ const DemoProfileScreen: React.FC = () => {
       <View className="flex-1 px-5 pt-8">
         <View className="items-center mb-8">
           <View className="w-16 h-16 rounded-full bg-surface items-center justify-center mb-4">
-            <Ionicons name="person-circle" size={28} color={colors.accent} />
+            <Icon name="person-circle-outline" size={28} color={colors.accent} />
           </View>
           <Text className="text-ink text-2xl font-bold">Create Your Profile</Text>
           <Text className="text-muted text-sm mt-1">Set up your demo account</Text>
@@ -68,7 +68,7 @@ const DemoProfileScreen: React.FC = () => {
             }`}
             style={role === 'Husband' ? { shadowColor: colors.ink, shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.2, shadowRadius: 6, elevation: 3 } : {}}
           >
-            <Ionicons
+            <Icon
               name={role === 'Husband' ? 'man' : 'man-outline'}
               size={20}
               color={role === 'Husband' ? colors.white : colors.muted}
@@ -86,7 +86,7 @@ const DemoProfileScreen: React.FC = () => {
             }`}
             style={role === 'Wife' ? { shadowColor: colors.ink, shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.2, shadowRadius: 6, elevation: 3 } : {}}
           >
-            <Ionicons
+            <Icon
               name={role === 'Wife' ? 'woman' : 'woman-outline'}
               size={20}
               color={role === 'Wife' ? colors.white : colors.muted}

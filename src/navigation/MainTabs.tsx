@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../components/Icon';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors } from '../constants/colors';
 import { MainTabParamList } from './types';
@@ -80,7 +80,7 @@ const MainTabs: React.FC = () => {
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? 'home' : 'home-outline'} size={20} color={color} />
+            <Icon name={focused ? 'home' : 'home-outline'} size={20} color={color} />
           ),
         }}
       />
@@ -90,7 +90,7 @@ const MainTabs: React.FC = () => {
         options={{
           tabBarLabel: 'Prayer',
           tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? 'moon' : 'moon-outline'} size={20} color={color} />
+            <Icon name={focused ? 'moon' : 'moon-outline'} size={20} color={color} />
           ),
         }}
       />
@@ -100,7 +100,7 @@ const MainTabs: React.FC = () => {
         options={{
           tabBarLabel: 'Quran',
           tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? 'book' : 'book-outline'} size={20} color={color} />
+            <Icon name={focused ? 'book' : 'book-outline'} size={20} color={color} />
           ),
         }}
       />
@@ -110,7 +110,7 @@ const MainTabs: React.FC = () => {
         options={{
           tabBarLabel: 'Dhikr',
           tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? 'heart' : 'heart-outline'} size={20} color={color} />
+            <Icon name={focused ? 'heart' : 'heart-outline'} size={20} color={color} />
           ),
         }}
       />
@@ -120,7 +120,7 @@ const MainTabs: React.FC = () => {
         options={{
           tabBarLabel: 'More',
           tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? 'grid' : 'grid-outline'} size={20} color={color} />
+            <Icon name={focused ? 'grid' : 'grid-outline'} size={20} color={color} />
           ),
         }}
       />

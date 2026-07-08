@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Alert } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/Icon';
 import { LinearGradient } from 'expo-linear-gradient';
 import { colors } from '../../constants/colors';
 import { mockLocation, mockQiblaDirection } from '../../constants/mockData';
@@ -95,7 +95,7 @@ const QiblaScreen: React.FC = () => {
                       borderRadius: 2,
                     }}
                   />
-                  <Ionicons name="location-sharp" size={20} color={colors.accent} style={{ marginTop: -2 }} />
+                  <View style={{ marginTop: -2 }}><Icon name="location" size={20} color={colors.accent} /></View>
                 </View>
 
                 <View className="absolute w-4 h-4 rounded-full bg-ink items-center justify-center">
@@ -111,7 +111,7 @@ const QiblaScreen: React.FC = () => {
             <Text className="text-surface/60 text-xs font-semibold uppercase tracking-wider mb-2">Qibla Direction</Text>
             <Text className="text-accent text-5xl font-bold">{mockQiblaDirection}</Text>
             <View className="flex-row items-center mt-2">
-              <Ionicons name="location-outline" size={16} color={colors.surface + '80'} />
+              <Icon name="location-outline" size={16} color={colors.surface + '80'} />
               <Text className="text-surface/70 text-sm ml-1">{mockLocation}</Text>
             </View>
           </View>
@@ -120,7 +120,7 @@ const QiblaScreen: React.FC = () => {
         <IslamicCard variant="white" className="w-full mb-6">
           <View className="flex-row items-start">
             <View className="w-8 h-8 rounded-full bg-accent/20 items-center justify-center mr-3">
-              <Ionicons name="information" size={16} color={colors.accent} />
+              <Icon name="information-circle-outline" size={16} color={colors.accent} />
             </View>
             <View className="flex-1">
               <Text className="text-ink font-semibold text-sm mb-1">About Qibla</Text>
@@ -135,7 +135,7 @@ const QiblaScreen: React.FC = () => {
           title="Refresh Direction"
           variant="primary"
           onPress={handleRefresh}
-          icon={<Ionicons name="refresh" size={20} color={colors.white} />}
+          icon={<Icon name="refresh" size={20} color={colors.white} />}
           className="w-full mb-4"
         />
       </View>

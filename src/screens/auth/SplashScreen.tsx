@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/Icon';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import ScreenWrapper from '../../components/ScreenWrapper';
@@ -19,7 +19,7 @@ const SplashScreen: React.FC = () => {
       <View className="flex-1 items-center justify-center px-6">
         <View className="items-center">
           <View className="w-20 h-20 rounded-full bg-white/10 items-center justify-center mb-6 border border-white/20">
-            <Ionicons name="moon" size={28} color={colors.accentLight} />
+            <Icon name="moon" size={28} color={colors.accentLight} />
           </View>
           <Text className="text-white text-3xl font-bold tracking-wider">
             ZawjConnect

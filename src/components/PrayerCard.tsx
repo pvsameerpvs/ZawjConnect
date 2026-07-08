@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from './Icon';
 import { colors } from '../constants/colors';
 
 interface PrayerCardProps {
@@ -25,7 +25,7 @@ const PrayerCard: React.FC<PrayerCardProps> = ({
       className={`rounded-2xl p-4 flex-row items-center ${completed ? 'bg-primary/5 border border-sage/15' : 'bg-white border border-borderLight'}`}
     >
       <View className={`w-9 h-9 rounded-full items-center justify-center ${completed ? 'bg-primary' : 'bg-surface'}`}>
-        <Ionicons
+        <Icon
           name={completed ? 'checkmark-circle' : 'time-outline'}
           size={16}
           color={completed ? colors.white : colors.muted}
@@ -43,7 +43,7 @@ const PrayerCard: React.FC<PrayerCardProps> = ({
         <Text className="text-sm text-muted">{time}</Text>
       </View>
       <TouchableOpacity onPress={onToggle} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
-        <Ionicons
+        <Icon
           name={completed ? 'checkbox' : 'square-outline'}
           size={20}
           color={completed ? colors.primary : colors.muted}

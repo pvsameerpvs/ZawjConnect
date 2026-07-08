@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { View, Text } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/Icon';
 import ScreenWrapper from '../../components/ScreenWrapper';
 import GradientHeader from '../../components/GradientHeader';
 import IslamicCard from '../../components/IslamicCard';
@@ -37,7 +37,7 @@ const FastingCard: React.FC<FastingCardProps> = ({ title, subtitle, completed, s
             completed ? 'bg-primary/15' : status === 'upcoming' ? 'bg-surface' : 'bg-surface'
           }`}
         >
-          <Ionicons
+          <Icon
             name={completed ? 'checkmark-circle' : status === 'upcoming' ? 'calendar-outline' : 'ellipse-outline'}
             size={20}
             color={completed ? colors.success : colors.muted}

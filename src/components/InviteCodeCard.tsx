@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from './Icon';
 import { colors } from '../constants/colors';
 
 interface InviteCodeCardProps {
@@ -21,7 +21,7 @@ const InviteCodeCard: React.FC<InviteCodeCardProps> = ({
       className="bg-white rounded-2xl p-6 border border-borderLight items-center"
     >
       <View className="w-14 h-14 rounded-full bg-primary/10 items-center justify-center mb-4">
-        <Ionicons name="link" size={24} color={colors.primary} />
+        <Icon name="link-outline" size={24} color={colors.primary} />
       </View>
       <Text className="text-lg font-bold text-ink">Invite Your Spouse</Text>
       <Text className="text-sm text-muted text-center mt-1 mb-5">
@@ -49,7 +49,7 @@ const InviteCodeCard: React.FC<InviteCodeCardProps> = ({
             activeOpacity={0.7}
             className="flex-row items-center bg-surface rounded-2xl px-5 py-2.5"
           >
-            <Ionicons name="copy-outline" size={16} color={colors.primary} />
+            <Icon name="copy-outline" size={16} color={colors.primary} />
             <Text className="text-sm font-semibold text-primary ml-2">Copy</Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -57,7 +57,7 @@ const InviteCodeCard: React.FC<InviteCodeCardProps> = ({
             activeOpacity={0.7}
             className="flex-row items-center bg-primary rounded-2xl px-5 py-2.5"
           >
-            <Ionicons name="share-outline" size={16} color={colors.white} />
+            <Icon name="share-outline" size={16} color={colors.white} />
             <Text className="text-sm font-semibold text-white ml-2">Share</Text>
           </TouchableOpacity>
         </View>

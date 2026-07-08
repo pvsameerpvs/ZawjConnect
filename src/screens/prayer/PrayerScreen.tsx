@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { View, Text } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/Icon';
 import { colors } from '../../constants/colors';
 import { mockPrayerTimes, mockPrayerProgress } from '../../constants/mockData';
 import ScreenWrapper from '../../components/ScreenWrapper';
@@ -47,7 +47,7 @@ const PrayerScreen: React.FC = () => {
           }}
         >
           <View className="w-12 h-12 rounded-full bg-accent items-center justify-center">
-            <Ionicons name="star" size={24} color={colors.ink} />
+            <Icon name="star-outline" size={24} color={colors.accent} />
           </View>
           <View className="flex-1 ml-3">
             <Text className="text-xs text-primary font-semibold uppercase tracking-wider">Next Prayer</Text>
@@ -89,7 +89,7 @@ const PrayerScreen: React.FC = () => {
 
         <IslamicCard variant="white" className="mb-4">
           <View className="flex-row items-center mb-3">
-            <Ionicons name="notifications-outline" size={20} color={colors.accent} />
+            <Icon name="notifications-outline" size={20} color={colors.accent} />
             <Text className="text-ink font-semibold text-base ml-2">Reminders</Text>
           </View>
           <ToggleSwitch

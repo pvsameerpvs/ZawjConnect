@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/Icon';
 import { useNavigation } from '@react-navigation/native';
 import { colors } from '../../constants/colors';
 import { mockUser, mockSpouse, mockSpouseProgress } from '../../constants/mockData';
@@ -46,7 +46,7 @@ const SpouseScreen: React.FC = () => {
           <IslamicCard>
             <View className="flex-row items-center">
               <View className="w-12 h-12 rounded-2xl bg-primary/10 items-center justify-center mr-4">
-                <Ionicons name="moon-outline" size={20} color={colors.primary} />
+                <Icon name="moon-outline" size={20} color={colors.primary} />
               </View>
               <View className="flex-1">
                 <View className="flex-row justify-between items-center mb-1.5">
@@ -65,7 +65,7 @@ const SpouseScreen: React.FC = () => {
           <IslamicCard>
             <View className="flex-row items-center">
               <View className="w-12 h-12 rounded-2xl bg-ink/10 items-center justify-center mr-4">
-                <Ionicons name="book-outline" size={20} color={colors.ink} />
+                <Icon name="book-outline" size={20} color={colors.primary} />
               </View>
               <View className="flex-1">
                 <Text className="text-sm font-semibold text-ink">Quran</Text>
@@ -84,7 +84,7 @@ const SpouseScreen: React.FC = () => {
           <IslamicCard>
             <View className="flex-row items-center">
               <View className="w-12 h-12 rounded-2xl bg-accent/10 items-center justify-center mr-4">
-                <Ionicons name="repeat-outline" size={20} color={colors.accent} />
+                <Icon name="repeat-outline" size={20} color={colors.accent} />
               </View>
               <View className="flex-1">
                 <Text className="text-sm font-semibold text-ink mb-2">Dhikr</Text>
@@ -100,7 +100,7 @@ const SpouseScreen: React.FC = () => {
           <IslamicCard>
             <View className="flex-row items-center">
               <View className="w-12 h-12 rounded-2xl bg-primary/10 items-center justify-center mr-4">
-                <Ionicons
+                <Icon
                   name={mockSpouseProgress.tahajjud ? 'checkmark-circle' : 'time-outline'}
                   size={20}
                   color={mockSpouseProgress.tahajjud ? colors.success : colors.muted}
@@ -130,7 +130,7 @@ const SpouseScreen: React.FC = () => {
           <IslamicCard>
             <View className="flex-row items-center">
               <View className="w-12 h-12 rounded-2xl bg-primary/10 items-center justify-center mr-4">
-                <Ionicons
+                <Icon
                   name="location-outline"
                   size={20}
                   color={colors.primary}

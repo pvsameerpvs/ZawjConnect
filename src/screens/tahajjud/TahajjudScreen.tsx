@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/Icon';
 import ScreenWrapper from '../../components/ScreenWrapper';
 import GradientHeader from '../../components/GradientHeader';
 import IslamicCard from '../../components/IslamicCard';
@@ -40,7 +40,7 @@ const TahajjudScreen: React.FC = () => {
         <IslamicCard variant="surface" className="mb-4">
           <View className="items-center mb-2">
             <View className="w-10 h-10 rounded-full bg-accent/15 items-center justify-center mb-3">
-              <Ionicons name="moon" size={20} color={colors.accent} />
+              <Icon name="moon" size={20} color={colors.accent} />
             </View>
             <Text className="text-sm text-ink text-center leading-relaxed italic">
               "The best prayer after the obligatory prayers is the night prayer."
@@ -55,7 +55,7 @@ const TahajjudScreen: React.FC = () => {
           variant={todayCompleted ? 'primary' : 'accent'}
           icon={
             todayCompleted ? (
-              <Ionicons name="checkmark-circle" size={20} color={colors.white} />
+              <Icon name="checkmark-circle" size={20} color={colors.white} />
             ) : undefined
           }
           className="mb-4"

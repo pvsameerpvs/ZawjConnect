@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Alert } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/Icon';
 import { useNavigation } from '@react-navigation/native';
 import ScreenWrapper from '../../components/ScreenWrapper';
 import GradientHeader from '../../components/GradientHeader';
@@ -98,7 +98,7 @@ const DuaScreen: React.FC = () => {
           elevation: 6,
         }}
       >
-        <Ionicons name="add" size={24} color={colors.white} />
+        <Icon name="add" size={24} color={colors.white} />
       </TouchableOpacity>
     </View>
   );

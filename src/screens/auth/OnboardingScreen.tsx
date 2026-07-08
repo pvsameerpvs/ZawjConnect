@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/Icon';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import ScreenWrapper from '../../components/ScreenWrapper';
@@ -55,7 +55,7 @@ const OnboardingScreen: React.FC = () => {
 
         <View className="flex-1 items-center justify-center px-4">
           <View className="w-20 h-20 rounded-full bg-surface items-center justify-center mb-8 border border-borderLight">
-            <Ionicons name={slide.icon} size={28} color={colors.accent} />
+            <Icon name={slide.icon} size={28} color={colors.accent} />
           </View>
 
           <Text className="text-ink text-2xl font-bold text-center mb-4">
@@ -85,7 +85,7 @@ const OnboardingScreen: React.FC = () => {
             onPress={handleNext}
             icon={
               !isLastSlide ? (
-                <Ionicons name="arrow-forward" size={16} color="#3D352A" />
+                <Icon name="arrow-forward" size={16} color={colors.white} />
               ) : undefined
             }
             className="px-8"

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Keyboard } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/Icon';
 import ScreenWrapper from '../../components/ScreenWrapper';
 import GradientHeader from '../../components/GradientHeader';
 import IslamicCard from '../../components/IslamicCard';
@@ -105,7 +105,7 @@ const ZakatScreen: React.FC = () => {
           <IslamicCard variant="white" className="mt-6">
             <View className="items-center mb-4">
               <View className="w-12 h-12 rounded-full bg-primary/10 items-center justify-center mb-2">
-                <Ionicons name="calculator-outline" size={24} color={colors.primary} />
+                <Icon name="calculator-outline" size={24} color={colors.primary} />
               </View>
               <Text className="text-lg font-bold text-ink">Zakat Result</Text>
             </View>

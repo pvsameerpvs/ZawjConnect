@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/Icon';
 import ScreenWrapper from '../../components/ScreenWrapper';
 import IslamicCard from '../../components/IslamicCard';
 import GradientHeader from '../../components/GradientHeader';
@@ -43,7 +43,7 @@ const QuranBookmarksScreen: React.FC = () => {
                   {ayah.surah} · Ayah {ayah.ayah}
                 </Text>
                 <TouchableOpacity onPress={() => removeBookmark(ayah.id)} activeOpacity={0.7}>
-                  <Ionicons name="bookmark" size={20} color={colors.primary} />
+                  <Icon name="bookmark" size={20} color={colors.primary} />
                 </TouchableOpacity>
               </View>
               <Text className="text-lg text-right font-medium text-ink mb-1" style={{ fontFamily: 'serif' }}>

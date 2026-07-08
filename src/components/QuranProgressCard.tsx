@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from './Icon';
 import { colors } from '../constants/colors';
 
 interface QuranProgressCardProps {
@@ -28,7 +28,7 @@ const QuranProgressCard: React.FC<QuranProgressCardProps> = ({
     >
       <View className="flex-row items-center mb-3">
         <View className="w-9 h-9 rounded-xl bg-primary/10 items-center justify-center">
-          <Ionicons name="book" size={16} color={colors.primary} />
+          <Icon name="book" size={16} color={colors.primary} />
         </View>
         <View className="flex-1 ml-3">
           <Text className="text-base font-semibold text-ink">Quran Progress</Text>

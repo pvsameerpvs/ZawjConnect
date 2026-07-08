@@ -8,18 +8,26 @@ interface GradientHeaderProps {
   title: string;
   subtitle?: string;
   rightIcon?: React.ReactNode;
+  variant?: 'default' | 'gold';
 }
+
+const gradients = {
+  default: { colors: [colors.ink, colors.primaryDark] as const },
+  gold: { colors: [colors.ink, colors.accentDark] as const },
+};
 
 const GradientHeader: React.FC<GradientHeaderProps> = ({
   title,
   subtitle,
   rightIcon,
+  variant = 'default',
 }) => {
   const insets = useSafeAreaInsets();
+  const gradient = gradients[variant];
 
   return (
     <LinearGradient
-      colors={[colors.ink, colors.primaryDark]}
+      colors={gradient.colors}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
       className="rounded-b-3xl"
@@ -32,7 +40,7 @@ const GradientHeader: React.FC<GradientHeaderProps> = ({
         <View className="flex-1">
           <Text className="text-xl font-bold text-white tracking-wide">{title}</Text>
           {subtitle && (
-            <Text className="text-sm text-accent-light mt-1.5">{subtitle}</Text>
+            <Text className="text-sm text-white/80 mt-1.5 font-medium">{subtitle}</Text>
           )}
         </View>
         {rightIcon && (

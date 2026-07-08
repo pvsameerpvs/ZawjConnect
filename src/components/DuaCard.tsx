@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from './Icon';
 import { colors } from '../constants/colors';
 import { Dua } from '../types';
 
@@ -36,7 +36,7 @@ const DuaCard: React.FC<DuaCardProps> = ({
             </View>
             {dua.isShared && (
               <View className="ml-2">
-                <Ionicons name="people" size={16} color={colors.muted} />
+                <Icon name="people-outline" size={16} color={colors.muted} />
               </View>
             )}
           </View>
@@ -49,7 +49,7 @@ const DuaCard: React.FC<DuaCardProps> = ({
           activeOpacity={0.7}
           className="flex-row items-center"
         >
-          <Ionicons
+          <Icon
             name={dua.answered ? 'close-circle-outline' : 'checkmark-circle-outline'}
             size={16}
             color={dua.answered ? colors.muted : colors.primary}
@@ -59,7 +59,7 @@ const DuaCard: React.FC<DuaCardProps> = ({
           </Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={onDelete} activeOpacity={0.7} className="flex-row items-center">
-          <Ionicons name="trash-outline" size={16} color={colors.error} />
+          <Icon name="trash-outline" size={16} color={colors.error} />
           <Text className="text-xs ml-1 text-error">Delete</Text>
         </TouchableOpacity>
       </View>
