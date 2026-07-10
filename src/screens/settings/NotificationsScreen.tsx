@@ -7,8 +7,6 @@ import ToggleSwitch from '../../components/ToggleSwitch';
 
 const NotificationsScreen: React.FC = () => {
   const [prayerReminders, setPrayerReminders] = useState(true);
-  const [quranReminder, setQuranReminder] = useState(true);
-  const [dhikrReminder, setDhikrReminder] = useState(false);
   const [tahajjudReminder, setTahajjudReminder] = useState(true);
   const [fastingReminder, setFastingReminder] = useState(false);
   const [spouseEncouragement, setSpouseEncouragement] = useState(true);
@@ -23,16 +21,6 @@ const NotificationsScreen: React.FC = () => {
               label="Prayer reminders"
               value={prayerReminders}
               onValueChange={setPrayerReminders}
-            />
-            <ToggleSwitch
-              label="Quran reminder"
-              value={quranReminder}
-              onValueChange={setQuranReminder}
-            />
-            <ToggleSwitch
-              label="Dhikr reminder"
-              value={dhikrReminder}
-              onValueChange={setDhikrReminder}
             />
             <ToggleSwitch
               label="Tahajjud reminder"

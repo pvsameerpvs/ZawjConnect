@@ -7,7 +7,9 @@ import {
   ChevronLeft, RefreshCw, BarChart3, Info, Link, Clock, Check, Flame,
   Trophy, Play, Star, Users, Eye, EyeOff, Globe, Circle, CheckSquare,
   Square, Plus, ArrowRight, Bookmark, Calculator, Repeat, Palette, Key,
-  Mail, Gem, Briefcase, MinusCircle,
+  Mail, Gem, Briefcase, MinusCircle, ShoppingCart, MessageCircle,
+  TrendingUp, List, UserPlus, Send, MoreHorizontal, Pencil, Camera,
+  SlidersHorizontal, Receipt, Download, Minus, ShoppingBag, Coins, Zap,
 } from 'lucide-react-native';
 
 const iconMap: Record<string, React.ComponentType<{ size?: number; color?: string; fill?: string }>> = {
@@ -72,6 +74,22 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; color?: strin
   fasting: Utensils, 'fasting-outline': Utensils,
   tahajjud: Moon, 'tahajjud-outline': Moon,
   hajj: Plane, 'hajj-outline': Plane,
+  'flash-outline': Zap,
+  'shopping-cart': ShoppingCart, 'shopping-cart-outline': ShoppingCart,
+  'message-circle': MessageCircle, 'message-circle-outline': MessageCircle,
+  'trending-up': TrendingUp, 'trending-up-outline': TrendingUp,
+  'list-outline': List,
+  'user-plus': UserPlus, 'user-plus-outline': UserPlus,
+  send: Send, 'send-outline': Send,
+  'more-horizontal': MoreHorizontal,
+  edit: Pencil, 'edit-outline': Pencil,
+  camera: Camera, 'camera-outline': Camera,
+  filter: SlidersHorizontal, 'filter-outline': SlidersHorizontal,
+  receipt: Receipt, 'receipt-outline': Receipt,
+  download: Download, 'download-outline': Download,
+  minus: Minus, 'minus-outline': Minus,
+  'shopping-bag': ShoppingBag, 'shopping-bag-outline': ShoppingBag,
+  coins: Coins, 'coins-outline': Coins,
 };
 
 interface IconProps {

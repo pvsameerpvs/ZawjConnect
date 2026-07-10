@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, Alert } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
 import ScreenWrapper from '../../components/ScreenWrapper';
 import GradientHeader from '../../components/GradientHeader';
 import SettingsRow from '../../components/SettingsRow';
 import AppButton from '../../components/AppButton';
 
 const SettingsScreen: React.FC = () => {
-  const navigation = useNavigation<any>();
+  const router = useRouter();
 
   const handleLogout = () => {
     Alert.alert(
@@ -19,10 +19,7 @@ const SettingsScreen: React.FC = () => {
           text: 'Logout',
           style: 'destructive',
           onPress: () =>
-            navigation.reset({
-              index: 0,
-              routes: [{ name: 'Auth' as any }],
-            }),
+            router.replace('/(auth)'),
         },
       ]
     );
@@ -36,17 +33,17 @@ const SettingsScreen: React.FC = () => {
           <SettingsRow
             icon="person"
             title="Profile"
-            onPress={() => navigation.navigate('Profile')}
+            onPress={() => router.push('/more/profile')}
           />
           <SettingsRow
             icon="notifications"
             title="Notifications"
-            onPress={() => navigation.navigate('Notifications')}
+            onPress={() => router.push('/more/notifications')}
           />
           <SettingsRow
             icon="shield-checkmark"
             title="Privacy"
-            onPress={() => navigation.navigate('Privacy')}
+            onPress={() => router.push('/more/privacy')}
           />
           <SettingsRow
             icon="color-palette"

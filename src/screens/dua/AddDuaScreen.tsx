@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Alert } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
 import ScreenWrapper from '../../components/ScreenWrapper';
 import GradientHeader from '../../components/GradientHeader';
 import AppInput from '../../components/AppInput';
@@ -9,7 +9,7 @@ import AppButton from '../../components/AppButton';
 const CATEGORIES = ['Family', 'Rizq', 'Health', 'Forgiveness', 'Marriage', 'Children', 'Akhirah'];
 
 const AddDuaScreen: React.FC = () => {
-  const navigation = useNavigation();
+  const router = useRouter();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
@@ -30,7 +30,7 @@ const AddDuaScreen: React.FC = () => {
     }
 
     Alert.alert('Dua Saved', 'Your dua has been added successfully.', [
-      { text: 'OK', onPress: () => navigation.goBack() },
+      { text: 'OK', onPress: () => router.back() },
     ]);
   };
 

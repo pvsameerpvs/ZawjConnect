@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
 import ScreenWrapper from '../components/ScreenWrapper';
 import GradientHeader from '../components/GradientHeader';
 import MoreMenuCard from '../components/MoreMenuCard';
@@ -21,7 +21,7 @@ const menuItems = [
 ];
 
 const MoreScreen: React.FC = () => {
-  const navigation = useNavigation<any>();
+  const router = useRouter();
 
   return (
     <View className="flex-1 bg-surface">
@@ -34,7 +34,7 @@ const MoreScreen: React.FC = () => {
               title={item.title}
               icon={item.icon}
               iconColor={item.iconColor}
-              onPress={() => navigation.navigate(item.route)}
+              onPress={() => router.push('/more/' + item.route.toLowerCase())}
             />
           ))}
         </View>

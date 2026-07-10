@@ -1,18 +1,15 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import Icon from '../../components/Icon';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useRouter } from 'expo-router';
 import ScreenWrapper from '../../components/ScreenWrapper';
 import AppButton from '../../components/AppButton';
 import { colors } from '../../constants/colors';
 import { ROUTES } from '../../constants/routes';
-import { AuthStackParamList } from '../../navigation/types';
 
-type SplashNavigationProp = NativeStackNavigationProp<AuthStackParamList, 'Splash'>;
 
 const SplashScreen: React.FC = () => {
-  const navigation = useNavigation<SplashNavigationProp>();
+  const router = useRouter();
 
   return (
     <ScreenWrapper background="ink" withPadding={false}>
@@ -34,7 +31,7 @@ const SplashScreen: React.FC = () => {
         <AppButton
           title="Continue"
           variant="accent"
-          onPress={() => navigation.navigate(ROUTES.ONBOARDING)}
+          onPress={() => router.push('/(auth)/onboarding')}
         />
       </View>
     </ScreenWrapper>

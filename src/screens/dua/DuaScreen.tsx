@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import Icon from '../../components/Icon';
-import { useNavigation } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
 import ScreenWrapper from '../../components/ScreenWrapper';
 import GradientHeader from '../../components/GradientHeader';
 import DuaCard from '../../components/DuaCard';
@@ -11,7 +11,7 @@ import { Dua } from '../../types';
 import { colors } from '../../constants/colors';
 
 const DuaScreen: React.FC = () => {
-  const navigation = useNavigation();
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState<'Personal' | 'Shared'>('Personal');
   const [duas, setDuas] = useState<Dua[]>(mockDuas);
 
@@ -85,7 +85,7 @@ const DuaScreen: React.FC = () => {
       </ScreenWrapper>
 
       <TouchableOpacity
-        onPress={() => navigation.navigate('AddDua' as never)}
+        onPress={() => router.push('/more/adddua')}
         activeOpacity={0.8}
         className="absolute bg-primary w-14 h-14 rounded-full items-center justify-center"
         style={{

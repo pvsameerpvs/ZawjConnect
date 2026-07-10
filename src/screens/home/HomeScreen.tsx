@@ -1,7 +1,7 @@
 import React, { useMemo, useRef } from 'react';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import Icon from '../../components/Icon';
-import { useNavigation } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { colors } from '../../constants/colors';
@@ -11,8 +11,6 @@ import {
   mockGregorianDate,
   mockPrayerTimes,
   mockPrayerProgress,
-  mockQuranProgress,
-  mockDhikrCounts,
   mockSpouseProgress,
 } from '../../constants/mockData';
 import ScreenWrapper from '../../components/ScreenWrapper';
@@ -41,10 +39,11 @@ const getNextPrayer = (): { name: string; time: string } => {
   return { name: 'Fajr', time: mockPrayerTimes.Fajr };
 };
 
+const TAB_ROUTES = ['prayer'] as const;
+
 const quickActions = [
-  { title: 'Prayer', icon: 'moon-outline' as const, route: 'PrayerTab', color: colors.primary },
-  { title: 'Quran', icon: 'book-outline' as const, route: 'QuranTab', color: colors.ink },
-  { title: 'Dhikr', icon: 'repeat-outline' as const, route: 'DhikrTab', color: colors.accent },
+  { title: 'Prayer', icon: 'moon-outline' as const, route: 'prayer', color: colors.primary },
+  { title: 'Family', icon: 'people-outline' as const, route: 'family', color: colors.primaryLight },
   { title: 'Dua', icon: 'hand-left-outline' as const, route: 'Dua', color: colors.success },
   { title: 'Spouse', icon: 'heart-outline' as const, route: 'Spouse', color: colors.error },
   { title: 'Zakat', icon: 'wallet-outline' as const, route: 'Zakat', color: colors.accentDark },
@@ -53,15 +52,15 @@ const quickActions = [
 ];
 
 const HomeScreen: React.FC = () => {
-  const navigation = useNavigation<any>();
+  const router = useRouter();
   const insets = useSafeAreaInsets();
   const nextPrayer = useMemo(() => getNextPrayer(), []);
 
   const handleNavigate = (route: string) => {
-    if (route === 'PrayerTab' || route === 'QuranTab' || route === 'DhikrTab') {
-      navigation.navigate(route);
+    if (TAB_ROUTES.includes(route as typeof TAB_ROUTES[number])) {
+      router.navigate('/(tabs)/' + route);
     } else {
-      navigation.navigate('MoreTab', { screen: route });
+      router.push('/more/' + route.toLowerCase());
     }
   };
 
@@ -69,10 +68,7 @@ const HomeScreen: React.FC = () => {
   const totalPrayers = Object.keys(mockPrayerProgress).length;
   const salahProgress = completedPrayers / totalPrayers;
 
-  const totalDhikr = Object.values(mockDhikrCounts).reduce((sum, count) => sum + count, 0);
-  const totalDhikrGoal = 33 + 33 + 34 + 100 + 100;
-  const dhikrProgress = totalDhikr / totalDhikrGoal;
-  const quranProgress = mockQuranProgress.completedToday / mockQuranProgress.dailyGoal;
+
 
   return (
     <View className="flex-1 bg-surface">
@@ -96,7 +92,7 @@ const HomeScreen: React.FC = () => {
 
         {/* Next Prayer Mini Card */}
         <TouchableOpacity
-          onPress={() => handleNavigate('PrayerTab')}
+          onPress={() => handleNavigate('prayer')}
           activeOpacity={0.8}
           className="mx-5 mb-4 bg-white/10 rounded-2xl px-4 py-3 flex-row items-center border border-white/10"
         >
@@ -117,65 +113,27 @@ const HomeScreen: React.FC = () => {
 
       <ScreenWrapper scroll background="surface" edges={['bottom']}>
         <View className="pt-3 pb-4" style={{ gap: 14 }}>
-          {/* Progress Overview Row */}
-          <View className="flex-row gap-2.5">
-            <TouchableOpacity
-              onPress={() => handleNavigate('PrayerTab')}
-              activeOpacity={0.7}
-              className="flex-1 bg-white rounded-2xl p-4"
-              style={{ shadowColor: colors.cardShadow, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 1, shadowRadius: 8, elevation: 1 }}
-            >
-              <View className="flex-row items-center mb-2">
-                <View className="w-8 h-8 rounded-xl bg-primary/10 items-center justify-center mr-2">
-                  <Icon name="moon-outline" size={16} color={colors.primary} />
-                </View>
-                <Text className="text-sm font-semibold text-ink">Salah</Text>
+          {/* Salah Progress Card */}
+          <TouchableOpacity
+            onPress={() => handleNavigate('prayer')}
+            activeOpacity={0.7}
+            className="bg-white rounded-2xl p-4"
+            style={{ shadowColor: colors.cardShadow, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 1, shadowRadius: 8, elevation: 1 }}
+          >
+            <View className="flex-row items-center">
+              <View className="w-10 h-10 rounded-xl bg-primary/10 items-center justify-center mr-3">
+                <Icon name="moon-outline" size={20} color={colors.primary} />
               </View>
-              <ProgressRing progress={salahProgress} size={52} strokeWidth={4} />
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={() => handleNavigate('QuranTab')}
-              activeOpacity={0.7}
-              className="flex-1 bg-white rounded-2xl p-4"
-              style={{ shadowColor: colors.cardShadow, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 1, shadowRadius: 8, elevation: 1 }}
-            >
-              <View className="flex-row items-center mb-2">
-                <View className="w-8 h-8 rounded-xl bg-ink/10 items-center justify-center mr-2">
-                  <Icon name="book-outline" size={16} color={colors.primary} />
-                </View>
-                <Text className="text-sm font-semibold text-ink">Quran</Text>
+              <View className="flex-1">
+                <Text className="text-sm font-semibold text-ink">Salah Progress</Text>
+                <Text className="text-xs text-muted">{completedPrayers}/{totalPrayers} prayers completed</Text>
               </View>
-              <View className="flex-1 justify-center">
-                <Text className="text-2xl font-bold text-ink">{mockQuranProgress.completedToday}</Text>
-                <Text className="text-xs text-muted">of {mockQuranProgress.dailyGoal} ayahs</Text>
-                <View className="h-1.5 bg-surface rounded-full mt-2 overflow-hidden">
-                  <View className="h-full bg-primary rounded-full" style={{ width: `${Math.min(quranProgress * 100, 100)}%` }} />
-                </View>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={() => handleNavigate('DhikrTab')}
-              activeOpacity={0.7}
-              className="flex-1 bg-white rounded-2xl p-4"
-              style={{ shadowColor: colors.cardShadow, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 1, shadowRadius: 8, elevation: 1 }}
-            >
-              <View className="flex-row items-center mb-2">
-                <View className="w-8 h-8 rounded-xl bg-accent/10 items-center justify-center mr-2">
-                  <Icon name="repeat-outline" size={16} color={colors.accent} />
-                </View>
-                <Text className="text-sm font-semibold text-ink">Dhikr</Text>
-              </View>
-              <View className="flex-1 justify-center">
-                <Text className="text-2xl font-bold text-ink">{totalDhikr}</Text>
-                <Text className="text-xs text-muted">of {totalDhikrGoal}</Text>
-                <View className="h-1.5 bg-surface rounded-full mt-2 overflow-hidden">
-                  <View className="h-full bg-accent rounded-full" style={{ width: `${Math.min(dhikrProgress * 100, 100)}%` }} />
-                </View>
-              </View>
-            </TouchableOpacity>
-          </View>
+              <ProgressRing progress={salahProgress} size={48} strokeWidth={4} />
+            </View>
+            <View className="mt-3 h-1.5 bg-surface rounded-full overflow-hidden">
+              <View className="h-full bg-primary rounded-full" style={{ width: `${salahProgress * 100}%` }} />
+            </View>
+          </TouchableOpacity>
 
           {/* Date Card */}
           <View className="flex-row bg-white rounded-2xl px-4 py-3 items-center"
@@ -211,18 +169,18 @@ const HomeScreen: React.FC = () => {
                 <Text className="text-[10px] text-muted">Salah</Text>
               </View>
               <View className="flex-1 bg-surface rounded-xl py-2.5 items-center">
-                <Icon name="book-outline" size={16} color={colors.primary} />
+                <Icon name="heart-outline" size={16} color={colors.error} />
                 <Text className="text-sm font-bold text-ink mt-0.5">
-                  {mockSpouseProgress.quran.ayahsToday}
+                  {mockSpouseProgress.tahajjud ? 'Yes' : 'No'}
                 </Text>
-                <Text className="text-[10px] text-muted">Ayahs</Text>
+                <Text className="text-[10px] text-muted">Tahajjud</Text>
               </View>
               <View className="flex-1 bg-surface rounded-xl py-2.5 items-center">
-                <Icon name="repeat-outline" size={16} color={colors.accent} />
+                <Icon name="location-outline" size={16} color={colors.accent} />
                 <Text className="text-sm font-bold text-ink mt-0.5">
-                  {mockSpouseProgress.dhikr.percentage}%
+                  {mockSpouseProgress.locationSharing ? 'On' : 'Off'}
                 </Text>
-                <Text className="text-[10px] text-muted">Dhikr</Text>
+                <Text className="text-[10px] text-muted">Location</Text>
               </View>
             </View>
           </IslamicCard>

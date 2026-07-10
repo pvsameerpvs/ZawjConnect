@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Icon from '../../components/Icon';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useRouter } from 'expo-router';
 import ScreenWrapper from '../../components/ScreenWrapper';
 import AppButton from '../../components/AppButton';
 import { colors } from '../../constants/colors';
 import { ROUTES } from '../../constants/routes';
-import { AuthStackParamList } from '../../navigation/types';
 
-type OnboardingNavigationProp = NativeStackNavigationProp<AuthStackParamList, 'Onboarding'>;
 
 const slides = [
   {
     icon: 'moon' as const,
     title: 'Grow Together in Deen',
-    text: 'Track your daily Salah, Quran reading, and dhikr. Build a shared spiritual journey with your spouse.',
+    text: 'Track your daily Salah, manage family expenses, and build a shared spiritual journey together.',
   },
   {
     icon: 'people' as const,
@@ -30,13 +27,13 @@ const slides = [
 ];
 
 const OnboardingScreen: React.FC = () => {
-  const navigation = useNavigation<OnboardingNavigationProp>();
+  const router = useRouter();
   const [currentSlide, setCurrentSlide] = useState(0);
   const isLastSlide = currentSlide === slides.length - 1;
 
   const handleNext = () => {
     if (isLastSlide) {
-      navigation.navigate(ROUTES.LOGIN);
+      router.push('/(auth)/login');
     } else {
       setCurrentSlide((prev) => prev + 1);
     }
@@ -48,7 +45,7 @@ const OnboardingScreen: React.FC = () => {
     <ScreenWrapper background="surface">
       <View className="flex-1">
         <View className="flex-row justify-end pt-2">
-          <TouchableOpacity onPress={() => navigation.navigate(ROUTES.LOGIN)} activeOpacity={0.7}>
+          <TouchableOpacity onPress={() => router.push('/(auth)/login')} activeOpacity={0.7}>
             <Text className="text-muted text-base font-medium">Skip</Text>
           </TouchableOpacity>
         </View>

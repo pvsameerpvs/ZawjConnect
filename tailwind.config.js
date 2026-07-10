@@ -1,43 +1,70 @@
+const { hairlineWidth, platformSelect } = require('nativewind/theme');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: [
     "./App.{js,jsx,ts,tsx}",
-    "./src/**/*.{js,jsx,ts,tsx}"
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./components/**/*.{js,jsx,ts,tsx}",
   ],
   presets: [require('nativewind/preset')],
   theme: {
     extend: {
       colors: {
+        border: withOpacity('border'),
+        input: withOpacity('input'),
+        ring: withOpacity('ring'),
+        background: withOpacity('background'),
+        foreground: withOpacity('foreground'),
         primary: {
-          DEFAULT: '#0D9488',
-          light: '#2DD4BF',
-          dark: '#0F766E',
+          DEFAULT: withOpacity('primary'),
+          foreground: withOpacity('primary-foreground'),
         },
-        surface: {
-          DEFAULT: '#FCFCFC',
-          light: '#FFFFFF',
+        secondary: {
+          DEFAULT: withOpacity('secondary'),
+          foreground: withOpacity('secondary-foreground'),
+        },
+        destructive: {
+          DEFAULT: withOpacity('destructive'),
+          foreground: withOpacity('destructive-foreground'),
+        },
+        muted: {
+          DEFAULT: withOpacity('muted'),
+          foreground: withOpacity('muted-foreground'),
         },
         accent: {
-          DEFAULT: '#F59E6B',
-          light: '#FDE6D5',
-          dark: '#D9773E',
+          DEFAULT: withOpacity('accent'),
+          foreground: withOpacity('accent-foreground'),
         },
-        ink: {
-          DEFAULT: '#0F172A',
-          light: '#64748B',
+        popover: {
+          DEFAULT: withOpacity('popover'),
+          foreground: withOpacity('popover-foreground'),
         },
-        muted: '#94A3B8',
-        border: '#E2E8F0',
-        'border-light': '#F1F5F9',
-        success: '#10B981',
-        error: '#EF4444',
+        card: {
+          DEFAULT: withOpacity('card'),
+          foreground: withOpacity('card-foreground'),
+        },
       },
-      borderRadius: {
-        'xl': '12px',
-        '2xl': '16px',
-        '3xl': '20px',
+      borderWidth: {
+        hairline: hairlineWidth(),
       },
     },
   },
   plugins: [],
+};
+
+function withOpacity(variableName) {
+  return ({ opacityValue }) => {
+    if (opacityValue !== undefined) {
+      return platformSelect({
+        ios: `rgb(var(--${variableName}) / ${opacityValue})`,
+        android: `rgb(var(--android-${variableName}) / ${opacityValue})`,
+      });
+    }
+    return platformSelect({
+      ios: `rgb(var(--${variableName}))`,
+      android: `rgb(var(--android-${variableName}))`,
+    });
+  };
 }

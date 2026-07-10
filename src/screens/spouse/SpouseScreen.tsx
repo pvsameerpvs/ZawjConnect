@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import Icon from '../../components/Icon';
-import { useNavigation } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
 import { colors } from '../../constants/colors';
 import { mockUser, mockSpouse, mockSpouseProgress } from '../../constants/mockData';
 import ScreenWrapper from '../../components/ScreenWrapper';
@@ -13,7 +13,7 @@ import ProgressBar from '../../components/ProgressBar';
 import ProgressRing from '../../components/ProgressRing';
 
 const SpouseScreen: React.FC = () => {
-  const navigation = useNavigation<any>();
+  const router = useRouter();
 
   return (
     <View className="flex-1 bg-surface">
@@ -57,41 +57,6 @@ const SpouseScreen: React.FC = () => {
                 </View>
                 <ProgressBar
                   progress={mockSpouseProgress.salah.completed / mockSpouseProgress.salah.total}
-                />
-              </View>
-            </View>
-          </IslamicCard>
-
-          <IslamicCard>
-            <View className="flex-row items-center">
-              <View className="w-12 h-12 rounded-2xl bg-ink/10 items-center justify-center mr-4">
-                <Icon name="book-outline" size={20} color={colors.primary} />
-              </View>
-              <View className="flex-1">
-                <Text className="text-sm font-semibold text-ink">Quran</Text>
-                <Text className="text-xs text-muted mt-0.5">
-                  {mockSpouseProgress.quran.ayahsToday} ayahs today
-                </Text>
-                <View className="mt-2">
-                  <ProgressBar
-                    progress={Math.min(mockSpouseProgress.quran.ayahsToday / 20, 1)}
-                  />
-                </View>
-              </View>
-            </View>
-          </IslamicCard>
-
-          <IslamicCard>
-            <View className="flex-row items-center">
-              <View className="w-12 h-12 rounded-2xl bg-accent/10 items-center justify-center mr-4">
-                <Icon name="repeat-outline" size={20} color={colors.accent} />
-              </View>
-              <View className="flex-1">
-                <Text className="text-sm font-semibold text-ink mb-2">Dhikr</Text>
-                <ProgressRing
-                  progress={mockSpouseProgress.dhikr.percentage / 100}
-                  size={64}
-                  strokeWidth={5}
                 />
               </View>
             </View>
@@ -160,13 +125,13 @@ const SpouseScreen: React.FC = () => {
           <AppButton
             title="Generate Invite Card"
             variant="secondary"
-            onPress={() => navigation.navigate('InviteCode')}
+            onPress={() => router.push('/more/invitecode')}
           />
 
           <AppButton
             title="Join with Code"
             variant="ghost"
-            onPress={() => navigation.navigate('JoinInvite')}
+            onPress={() => router.push('/more/joininvite')}
           />
         </View>
       </ScreenWrapper>

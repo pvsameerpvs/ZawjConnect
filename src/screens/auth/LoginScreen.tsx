@@ -1,21 +1,18 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import Icon from '../../components/Icon';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useRouter } from 'expo-router';
 import ScreenWrapper from '../../components/ScreenWrapper';
 import AppButton from '../../components/AppButton';
 import { colors } from '../../constants/colors';
 import { ROUTES } from '../../constants/routes';
-import { AuthStackParamList } from '../../navigation/types';
 
-type LoginNavigationProp = NativeStackNavigationProp<AuthStackParamList, 'Login'>;
 
 const LoginScreen: React.FC = () => {
-  const navigation = useNavigation<LoginNavigationProp>();
+  const router = useRouter();
 
   const handleNavigateToDemo = () => {
-    navigation.navigate(ROUTES.DEMO_PROFILE as any);
+    router.push('/(auth)/demo-profile');
   };
 
   return (

@@ -1,26 +1,23 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Icon from '../../components/Icon';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useRouter } from 'expo-router';
 import ScreenWrapper from '../../components/ScreenWrapper';
 import AppInput from '../../components/AppInput';
 import AppButton from '../../components/AppButton';
 import { colors } from '../../constants/colors';
 import { ROUTES } from '../../constants/routes';
-import { AuthStackParamList } from '../../navigation/types';
 
-type DemoProfileNavigationProp = NativeStackNavigationProp<AuthStackParamList, 'DemoProfile'>;
 
 const DemoProfileScreen: React.FC = () => {
-  const navigation = useNavigation<DemoProfileNavigationProp>();
+  const router = useRouter();
   const [name, setName] = useState('');
   const [city, setCity] = useState('');
   const [country, setCountry] = useState('');
   const [role, setRole] = useState<'Husband' | 'Wife'>('Husband');
 
   const handleSave = () => {
-    navigation.reset({ index: 0, routes: [{ name: ROUTES.MAIN_TABS as any }] });
+    router.replace('/(tabs)');
   };
 
   return (

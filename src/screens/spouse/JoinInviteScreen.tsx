@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import Icon from '../../components/Icon';
-import { useNavigation } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
 import { colors } from '../../constants/colors';
 import { mockUser, mockSpouse } from '../../constants/mockData';
 import ScreenWrapper from '../../components/ScreenWrapper';

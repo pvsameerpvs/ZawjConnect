@@ -8,10 +8,7 @@ export const ROUTES = {
   PRAYER: 'Prayer',
   PRAYER_TRACKER: 'PrayerTracker',
   QIBLA: 'Qibla',
-  QURAN: 'Quran',
-  QURAN_READER: 'QuranReader',
-  QURAN_BOOKMARKS: 'QuranBookmarks',
-  DHIKR: 'Dhikr',
+
   DUA: 'Dua',
   ADD_DUA: 'AddDua',
   TAHAJJUD: 'Tahajjud',
