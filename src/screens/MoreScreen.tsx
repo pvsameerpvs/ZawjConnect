@@ -1,44 +1,36 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
-import ScreenWrapper from '../components/ScreenWrapper';
-import GradientHeader from '../components/GradientHeader';
 import MoreMenuCard from '../components/MoreMenuCard';
-import { colors } from '../constants/colors';
 
 const menuItems = [
-  { title: 'Dua', icon: 'hand-left' as const, iconColor: colors.primary, route: 'Dua' },
-  { title: 'Tahajjud', icon: 'moon' as const, iconColor: colors.primary, route: 'Tahajjud' },
-  { title: 'Sunnah Fasting', icon: 'restaurant' as const, iconColor: colors.primary, route: 'Fasting' },
-  { title: 'Zakat', icon: 'calculator' as const, iconColor: colors.accent, route: 'Zakat' },
-  { title: 'Spouse', icon: 'people' as const, iconColor: colors.primary, route: 'Spouse' },
-  { title: 'Live Location', icon: 'location' as const, iconColor: colors.primary, route: 'Location' },
-  { title: 'Hajj & Umrah', icon: 'airplane' as const, iconColor: colors.accent, route: 'HajjUmrah' },
-  { title: 'Notifications', icon: 'notifications' as const, iconColor: colors.accent, route: 'Notifications' },
-  { title: 'Privacy', icon: 'shield-checkmark' as const, iconColor: colors.primary, route: 'Privacy' },
-  { title: 'Settings', icon: 'settings' as const, iconColor: colors.muted, route: 'Settings' },
-  { title: 'Profile', icon: 'person' as const, iconColor: colors.primary, route: 'Profile' },
+  { title: 'Dua', icon: 'hand', color: '#0F9D8A', route: 'dua' },
+  { title: 'Tahajjud', icon: 'moon', color: '#0F9D8A', route: 'tahajjud' },
+  { title: 'Sunnah Fasting', icon: 'restaurant', color: '#0F9D8A', route: 'fasting' },
+  { title: 'Zakat', icon: 'calculator', color: '#F59E6B', route: 'zakat' },
+  { title: 'Spouse', icon: 'users', color: '#0F9D8A', route: 'spouse' },
+  { title: 'Live Location', icon: 'location', color: '#0F9D8A', route: 'location' },
+  { title: 'Hajj & Umrah', icon: 'airplane', color: '#F59E6B', route: 'hajjumrah' },
+  { title: 'Notifications', icon: 'notifications', color: '#F59E6B', route: 'notifications' },
+  { title: 'Privacy', icon: 'shield', color: '#0F9D8A', route: 'privacy' },
+  { title: 'Settings', icon: 'settings', color: '#6B7280', route: 'settings' },
+  { title: 'Profile', icon: 'person', color: '#0F9D8A', route: 'profile' },
 ];
 
 const MoreScreen: React.FC = () => {
   const router = useRouter();
 
   return (
-    <View className="flex-1 bg-surface">
-      <GradientHeader title="More" subtitle="All features" />
-      <ScreenWrapper scroll background="surface" edges={['bottom']}>
-        <View className="pt-5" style={{ gap: 0 }}>
+    <View className="flex-1 bg-[#F8FAFC]">
+      <ScrollView showsVerticalScrollIndicator={false} className="flex-1" contentContainerStyle={{ padding: 24, paddingTop: 20, paddingBottom: 100 }}>
+        <View style={{ gap: 10 }}>
           {menuItems.map((item, index) => (
-            <MoreMenuCard
-              key={index}
-              title={item.title}
-              icon={item.icon}
-              iconColor={item.iconColor}
+            <MoreMenuCard key={index} title={item.title} icon={item.icon} iconColor={item.color}
               onPress={() => router.push('/more/' + item.route.toLowerCase())}
             />
           ))}
         </View>
-      </ScreenWrapper>
+      </ScrollView>
     </View>
   );
 };

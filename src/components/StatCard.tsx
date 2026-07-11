@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import Icon from './Icon';
-import { colors } from '../constants/colors';
 
 interface StatCardProps {
   title: string;
@@ -12,25 +11,24 @@ interface StatCardProps {
 }
 
 const StatCard: React.FC<StatCardProps> = ({
-  title,
-  value,
-  subtitle,
-  icon,
-  iconColor = colors.primary,
+  title, value, subtitle, icon, iconColor = '#0F9D8A',
 }) => {
   return (
-    <View
-      className="bg-white rounded-2xl p-4 border border-borderLight flex-1"
+    <View className="bg-white rounded-2xl p-4 flex-1"
+      style={{
+        shadowColor: 'rgba(0,0,0,0.04)',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 1,
+        shadowRadius: 8,
+        elevation: 1,
+      }}
     >
-      <View
-        className="w-9 h-9 rounded-xl items-center justify-center mb-2"
-        style={{ backgroundColor: iconColor + '12' }}
-      >
-        <Icon name={icon} size={16} color={iconColor} />
+      <View className="w-10 h-10 rounded-xl items-center justify-center mb-3" style={{ backgroundColor: iconColor + '12' }}>
+        <Icon name={icon} size={18} color={iconColor} />
       </View>
-      <Text className="text-xl font-bold text-ink">{value}</Text>
-      <Text className="text-xs text-muted mt-0.5">{title}</Text>
-      {subtitle && <Text className="text-[10px] text-muted mt-0.5">{subtitle}</Text>}
+      <Text className="text-[22px] font-bold text-[#111827] tracking-tight">{value}</Text>
+      <Text className="text-[12px] text-[#6B7280] mt-0.5 font-medium">{title}</Text>
+      {subtitle && <Text className="text-[11px] text-[#9CA3AF] mt-0.5">{subtitle}</Text>}
     </View>
   );
 };

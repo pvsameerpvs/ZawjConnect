@@ -10,120 +10,53 @@ import {
   Mail, Gem, Briefcase, MinusCircle, ShoppingCart, MessageCircle,
   TrendingUp, List, UserPlus, Send, MoreHorizontal, Pencil, Camera,
   SlidersHorizontal, Receipt, Download, Minus, ShoppingBag, Coins, Zap,
+  ArrowLeft, ArrowUpRight, CreditCard, Gift, Leaf, Target,
 } from 'lucide-react-native';
 
-const iconMap: Record<string, React.ComponentType<{ size?: number; color?: string; fill?: string }>> = {
-  home: House, 'home-outline': House,
-  moon: Moon, 'moon-outline': Moon,
-  book: Book, 'book-outline': Book,
-  heart: Heart, 'heart-outline': Heart,
-  'heart-circle': Heart, 'heart-circle-outline': Heart,
-  grid: Grid3X3, 'grid-outline': Grid3X3,
-  'hand-left': Hand, 'hand-left-outline': Hand,
-  settings: Settings, 'settings-outline': Settings,
-  person: User, 'person-outline': User,
-  'person-circle': UserCircle, 'person-circle-outline': UserCircle,
-  notifications: Bell, 'notifications-outline': Bell,
-  'shield-checkmark': ShieldCheck, 'shield-checkmark-outline': ShieldCheck,
-  location: MapPin, 'location-outline': MapPin,
-  wallet: Wallet, 'wallet-outline': Wallet,
-  restaurant: Utensils, 'restaurant-outline': Utensils,
-  airplane: Plane, 'airplane-outline': Plane,
-  calendar: Calendar, 'calendar-outline': Calendar,
-  search: Search,
-  'checkmark-circle': CheckCircle, 'checkmark-circle-outline': CheckCircle,
-  'close-circle': XCircle, 'close-circle-outline': XCircle,
-  'add-circle': PlusCircle, 'add-circle-outline': PlusCircle,
-  trash: Trash2, 'trash-outline': Trash2,
-  share: Share2, 'share-outline': Share2,
-  copy: Copy, 'copy-outline': Copy,
-  'chevron-forward': ChevronRight, 'chevron-back': ChevronLeft,
-  refresh: RefreshCw,
-  'stats-chart': BarChart3,
-  'information-circle-outline': Info, 'information-circle': Info,
-  link: Link, 'link-outline': Link,
-  'time-outline': Clock,
-  checkmark: Check,
-  flame: Flame,
-  'trophy-outline': Trophy,
-  play: Play,
-  star: Star, 'star-outline': Star,
-  'people-outline': Users,
-  eye: Eye, 'eye-off': EyeOff,
-  'globe-outline': Globe,
-  'ellipse-outline': Circle,
-  checkbox: CheckSquare, 'square-outline': Square,
-  add: Plus, 'arrow-forward': ArrowRight,
-  bookmark: Bookmark, 'bookmark-outline': Bookmark,
-  'repeat-outline': Repeat,
-  info: Info, time: Clock, check: Check,
-  delete: Trash2, 'delete-outline': Trash2,
-  'color-palette': Palette,
-  'key-outline': Key,
-  people: Users,
-  mail: Mail,
-  globe: Globe,
-  man: User, 'man-outline': User, woman: User, 'woman-outline': User,
-  'diamond-outline': Gem, 'briefcase-outline': Briefcase,
-  'remove-circle-outline': MinusCircle,
-  calculator: Calculator, 'calculator-outline': Calculator,
-  dua: Hand, 'dua-outline': Hand,
-  spouse: Heart, 'spouse-outline': Heart,
-  privacy: ShieldCheck, 'privacy-outline': ShieldCheck,
-  zakat: Wallet, 'zakat-outline': Wallet,
-  fasting: Utensils, 'fasting-outline': Utensils,
-  tahajjud: Moon, 'tahajjud-outline': Moon,
-  hajj: Plane, 'hajj-outline': Plane,
-  'flash-outline': Zap,
-  'shopping-cart': ShoppingCart, 'shopping-cart-outline': ShoppingCart,
-  'message-circle': MessageCircle, 'message-circle-outline': MessageCircle,
-  'trending-up': TrendingUp, 'trending-up-outline': TrendingUp,
-  'list-outline': List,
-  'user-plus': UserPlus, 'user-plus-outline': UserPlus,
-  send: Send, 'send-outline': Send,
-  'more-horizontal': MoreHorizontal,
-  edit: Pencil, 'edit-outline': Pencil,
-  camera: Camera, 'camera-outline': Camera,
-  filter: SlidersHorizontal, 'filter-outline': SlidersHorizontal,
-  receipt: Receipt, 'receipt-outline': Receipt,
-  download: Download, 'download-outline': Download,
-  minus: Minus, 'minus-outline': Minus,
-  'shopping-bag': ShoppingBag, 'shopping-bag-outline': ShoppingBag,
-  coins: Coins, 'coins-outline': Coins,
+const iconMap: Record<string, React.ComponentType<{ size?: number; color?: string }>> = {
+  home: House,
+  moon: Moon, book: Book, heart: Heart, grid: Grid3X3,
+  hand: Hand, settings: Settings, person: User, 'person-circle': UserCircle,
+  notifications: Bell, shield: ShieldCheck, location: MapPin,
+  wallet: Wallet, restaurant: Utensils, airplane: Plane,
+  calendar: Calendar, search: Search,
+  'check-circle': CheckCircle, 'x-circle': XCircle, 'plus-circle': PlusCircle,
+  trash: Trash2, share: Share2, copy: Copy,
+  chevron: ChevronRight, 'chevron-back': ChevronLeft,
+  refresh: RefreshCw, chart: BarChart3, info: Info, link: Link, clock: Clock,
+  check: Check, flame: Flame, trophy: Trophy, play: Play, star: Star,
+  users: Users, eye: Eye, 'eye-off': EyeOff, globe: Globe, circle: Circle,
+  checkbox: CheckSquare, square: Square, add: Plus, arrow: ArrowRight,
+  bookmark: Bookmark, repeat: Repeat, palette: Palette, key: Key,
+  mail: Mail, gem: Gem, briefcase: Briefcase, minus: MinusCircle,
+  calculator: Calculator, cart: ShoppingCart, chat: MessageCircle,
+  trending: TrendingUp, list: List, 'user-plus': UserPlus, send: Send,
+  more: MoreHorizontal, edit: Pencil, camera: Camera,
+  filter: SlidersHorizontal, receipt: Receipt, download: Download,
+  'shopping-bag': ShoppingBag, coins: Coins, zap: Zap,
+  arrow: ArrowLeft, 'arrow-up-right': ArrowUpRight,
+  card: CreditCard, gift: Gift, leaf: Leaf, target: Target,
 };
 
 interface IconProps {
   name: string;
   size?: number;
   color?: string;
-  fill?: string;
 }
 
-const GoogleLogo: React.FC<{ size?: number }> = ({ size = 16 }) => (
-  <View
-    style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}
-  >
-    <Text style={{ fontSize: size * 0.8, fontWeight: '700', color: '#4285F4' }}>G</Text>
+const GoogleLogo: React.FC<{ size?: number }> = ({ size = 20 }) => (
+  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
+    <Text style={{ fontSize: size * 0.7, fontWeight: '800', color: '#4285F4', letterSpacing: -1 }}>G</Text>
   </View>
 );
 
-const DEFAULT_ICON_COLOR = '#0D9488';
+const ICON_COLOR = '#0F9D8A';
 
-const Icon: React.FC<IconProps> = ({ name, size = 20, color, fill }) => {
-  if (name === 'logo-google') {
-    return <GoogleLogo size={size} />;
-  }
-
+const Icon: React.FC<IconProps> = ({ name, size = 20, color }) => {
+  if (name === 'google') return <GoogleLogo size={size} />;
   const LucideIcon = iconMap[name];
-  if (!LucideIcon) {
-    return null;
-  }
-
-  const iconColor = color || DEFAULT_ICON_COLOR;
-  if (fill) {
-    return <LucideIcon size={size} color={iconColor} fill={fill} />;
-  }
-  return <LucideIcon size={size} color={iconColor} />;
+  if (!LucideIcon) return null;
+  return <LucideIcon size={size} color={color || ICON_COLOR} />;
 };
 
 export default Icon;

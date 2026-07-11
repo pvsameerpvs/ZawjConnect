@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Icon from './Icon';
-import { colors } from '../constants/colors';
 
 interface InviteCodeCardProps {
   code: string;
@@ -10,55 +9,67 @@ interface InviteCodeCardProps {
   onShare: () => void;
 }
 
-const InviteCodeCard: React.FC<InviteCodeCardProps> = ({
-  code,
-  onGenerate,
-  onCopy,
-  onShare,
-}) => {
+const InviteCodeCard: React.FC<InviteCodeCardProps> = ({ code, onGenerate, onCopy, onShare }) => {
   return (
-    <View
-      className="bg-white rounded-2xl p-6 border border-borderLight items-center"
+    <View className="bg-white rounded-3xl p-6 items-center"
+      style={{
+        shadowColor: 'rgba(0,0,0,0.06)',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 1,
+        shadowRadius: 16,
+        elevation: 3,
+      }}
     >
-      <View className="w-14 h-14 rounded-full bg-primary/10 items-center justify-center mb-4">
-        <Icon name="link-outline" size={24} color={colors.primary} />
+      <View className="w-16 h-16 rounded-2xl bg-primary/10 items-center justify-center mb-4">
+        <Icon name="link" size={28} color='#0F9D8A' />
       </View>
-      <Text className="text-lg font-bold text-ink">Invite Your Spouse</Text>
-      <Text className="text-sm text-muted text-center mt-1 mb-5">
-        Share this code with your spouse to connect
+      <Text className="text-[22px] font-bold text-[#111827]">Invite Your Spouse</Text>
+      <Text className="text-[14px] text-[#6B7280] text-center mt-1.5 mb-6 leading-5">
+        Share this code with your spouse to connect your accounts
       </Text>
 
       {code ? (
-        <View className="bg-surface rounded-2xl px-6 py-4 mb-5 w-full items-center border border-borderLight">
-          <Text className="text-2xl font-bold tracking-widest text-primary">{code}</Text>
+        <View className="bg-[#F8FAFC] rounded-2xl px-6 py-5 mb-6 w-full items-center border border-[#E5E7EB]">
+          <Text className="text-[32px] font-bold tracking-[0.3em] text-primary">{code}</Text>
+          <Text className="text-[12px] text-[#6B7280] mt-2">Share this code before it expires</Text>
         </View>
       ) : (
         <TouchableOpacity
           onPress={onGenerate}
-          activeOpacity={0.7}
-          className="bg-primary rounded-2xl px-8 py-3 mb-5"
+          activeOpacity={0.8}
+          className="bg-primary rounded-2xl px-10 py-3.5 mb-4"
+          style={{
+            shadowColor: '#0F9D8A',
+            shadowOffset: { width: 0, height: 4 },
+            shadowOpacity: 0.3,
+            shadowRadius: 8,
+            elevation: 4,
+          }}
         >
-          <Text className="text-white font-semibold">Generate Code</Text>
+          <Text className="text-white font-bold text-[15px]">Generate Code</Text>
         </TouchableOpacity>
       )}
 
       {code && (
-        <View className="flex-row gap-2.5">
-          <TouchableOpacity
-            onPress={onCopy}
-            activeOpacity={0.7}
-            className="flex-row items-center bg-surface rounded-2xl px-5 py-2.5"
-          >
-            <Icon name="copy-outline" size={16} color={colors.primary} />
-            <Text className="text-sm font-semibold text-primary ml-2">Copy</Text>
+        <View className="flex-row gap-3">
+          <TouchableOpacity onPress={onCopy} activeOpacity={0.7} className="flex-row items-center bg-[#F3F4F6] rounded-2xl px-6 py-3">
+            <Icon name="copy" size={18} color='#0F9D8A' />
+            <Text className="text-[14px] font-semibold text-primary ml-2">Copy</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={onShare}
-            activeOpacity={0.7}
-            className="flex-row items-center bg-primary rounded-2xl px-5 py-2.5"
+            activeOpacity={0.8}
+            className="flex-row items-center bg-primary rounded-2xl px-6 py-3"
+            style={{
+              shadowColor: '#0F9D8A',
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.3,
+              shadowRadius: 6,
+              elevation: 3,
+            }}
           >
-            <Icon name="share-outline" size={16} color={colors.white} />
-            <Text className="text-sm font-semibold text-white ml-2">Share</Text>
+            <Icon name="share" size={18} color='#FFFFFF' />
+            <Text className="text-[14px] font-semibold text-white ml-2">Share</Text>
           </TouchableOpacity>
         </View>
       )}

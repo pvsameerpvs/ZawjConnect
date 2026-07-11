@@ -1,45 +1,37 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
-import ScreenWrapper from '../../components/ScreenWrapper';
-import GradientHeader from '../../components/GradientHeader';
-import IslamicCard from '../../components/IslamicCard';
+import { View, Text } from 'react-native';
 import ToggleSwitch from '../../components/ToggleSwitch';
 
 const NotificationsScreen: React.FC = () => {
-  const [prayerReminders, setPrayerReminders] = useState(true);
-  const [tahajjudReminder, setTahajjudReminder] = useState(true);
-  const [fastingReminder, setFastingReminder] = useState(false);
-  const [spouseEncouragement, setSpouseEncouragement] = useState(true);
+  const [prayer, setPrayer] = useState(true);
+  const [tahajjud, setTahajjud] = useState(true);
+  const [fasting, setFasting] = useState(false);
+  const [spouse, setSpouse] = useState(true);
+
+  const toggles = [
+    { label: 'Prayer reminders', value: prayer, set: setPrayer },
+    { label: 'Tahajjud reminder', value: tahajjud, set: setTahajjud },
+    { label: 'Fasting reminder', value: fasting, set: setFasting },
+    { label: 'Spouse encouragement', value: spouse, set: setSpouse },
+  ];
 
   return (
-    <View className="flex-1 bg-surface">
-      <GradientHeader title="Notifications" />
-      <ScreenWrapper scroll background="surface" edges={['bottom']}>
-        <View className="pt-5">
-          <IslamicCard>
-            <ToggleSwitch
-              label="Prayer reminders"
-              value={prayerReminders}
-              onValueChange={setPrayerReminders}
-            />
-            <ToggleSwitch
-              label="Tahajjud reminder"
-              value={tahajjudReminder}
-              onValueChange={setTahajjudReminder}
-            />
-            <ToggleSwitch
-              label="Fasting reminder"
-              value={fastingReminder}
-              onValueChange={setFastingReminder}
-            />
-            <ToggleSwitch
-              label="Spouse encouragement"
-              value={spouseEncouragement}
-              onValueChange={setSpouseEncouragement}
-            />
-          </IslamicCard>
+    <View className="flex-1 bg-[#F8FAFC]">
+      <View className="px-6 pt-16 pb-4">
+        <Text className="text-[28px] font-bold text-[#111827] tracking-tight">Notifications</Text>
+      </View>
+      <View className="flex-1 px-6">
+        <View className="bg-white rounded-3xl p-1 px-4"
+          style={{ shadowColor: 'rgba(0,0,0,0.04)', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 1, shadowRadius: 8, elevation: 1 }}
+        >
+          {toggles.map((t, i) => (
+            <View key={t.label}>
+              <ToggleSwitch label={t.label} value={t.value} onValueChange={t.set} />
+              {i < toggles.length - 1 && <View className="h-px bg-[#F3F4F6]" />}
+            </View>
+          ))}
         </View>
-      </ScreenWrapper>
+      </View>
     </View>
   );
 };

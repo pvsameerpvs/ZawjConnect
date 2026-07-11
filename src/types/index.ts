@@ -7,6 +7,5 @@ export interface Dua {
   isShared: boolean;
 }
 
-export type ButtonVariant = 'primary' | 'secondary' | 'accent' | 'ghost' | 'danger';
-
-export type CardVariant = 'white' | 'surface' | 'ink' | 'gradient' | 'glass';
+export type ButtonVariant = 'primary' | 'secondary' | 'accent' | 'ghost' | 'danger' | 'outline';
+export type CardVariant = 'white' | 'surface' | 'ink' | 'gradient' | 'glass' | 'elevated';

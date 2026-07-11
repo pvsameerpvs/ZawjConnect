@@ -1,104 +1,64 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Alert } from 'react-native';
-import Icon from '../../components/Icon';
+import { View, Text, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
-import ScreenWrapper from '../../components/ScreenWrapper';
-import GradientHeader from '../../components/GradientHeader';
+import Icon from '../../components/Icon';
 import DuaCard from '../../components/DuaCard';
-import EmptyState from '../../components/EmptyState';
 import { mockDuas } from '../../constants/mockData';
 import { Dua } from '../../types';
-import { colors } from '../../constants/colors';
 
 const DuaScreen: React.FC = () => {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<'Personal' | 'Shared'>('Personal');
   const [duas, setDuas] = useState<Dua[]>(mockDuas);
-
-  const filteredDuas = duas.filter((d) =>
-    activeTab === 'Shared' ? d.isShared : !d.isShared,
-  );
-
-  const handleToggleAnswered = (id: string) => {
-    setDuas((prev) =>
-      prev.map((d) => (d.id === id ? { ...d, answered: !d.answered } : d)),
-    );
-  };
-
-  const handleDelete = (id: string) => {
-    Alert.alert('Delete Dua', 'Are you sure you want to delete this dua?', [
-      { text: 'Cancel', style: 'cancel' },
-      {
-        text: 'Delete',
-        style: 'destructive',
-        onPress: () => setDuas((prev) => prev.filter((d) => d.id !== id)),
-      },
-    ]);
-  };
+  const filtered = duas.filter(d => activeTab === 'Shared' ? d.isShared : !d.isShared);
 
   return (
-    <View className="flex-1 bg-surface">
-      <GradientHeader title="Duas" subtitle="Supplications" />
-
-      <ScreenWrapper scroll background="surface" withPadding edges={['bottom']} contentClassName="pt-0">
-        <View className="flex-row bg-surface rounded-full p-1 mx-5 mb-5">
-          {(['Personal', 'Shared'] as const).map((tab) => (
-            <TouchableOpacity
-              key={tab}
-              onPress={() => setActiveTab(tab)}
-              activeOpacity={0.7}
-              className={`flex-1 py-2.5 rounded-full ${
-                activeTab === tab ? 'bg-primary' : ''
-              }`}
+    <View className="flex-1 bg-[#F8FAFC]">
+      <ScrollView showsVerticalScrollIndicator={false} className="flex-1" contentContainerStyle={{ padding: 24, paddingBottom: 100 }}>
+        <View className="bg-white rounded-2xl p-1.5 mb-6 flex-row"
+          style={{ shadowColor: 'rgba(0,0,0,0.04)', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 1, shadowRadius: 6, elevation: 2 }}
+        >
+          {(['Personal', 'Shared'] as const).map(tab => (
+            <TouchableOpacity key={tab} onPress={() => setActiveTab(tab)} activeOpacity={0.7}
+              className={`flex-1 py-3 rounded-xl ${activeTab === tab ? 'bg-primary' : ''}`}
             >
-              <Text
-                className={`text-center text-sm font-semibold ${
-                  activeTab === tab ? 'text-white' : 'text-ink'
-                }`}
-              >
-                {tab}
-              </Text>
+              <Text className={`text-center text-[14px] font-semibold tracking-tight ${activeTab === tab ? 'text-white' : 'text-[#6B7280]'}`}>{tab}</Text>
             </TouchableOpacity>
           ))}
         </View>
 
-        {filteredDuas.length === 0 ? (
-          <View className="px-5">
-            <EmptyState
-              title={activeTab === 'Personal' ? 'No personal duas' : 'No shared duas'}
-              description={activeTab === 'Personal' ? 'Add your personal supplications' : 'Share a dua with your spouse'}
-              icon="book-outline"
-            />
+        {filtered.length === 0 ? (
+          <View className="items-center py-16">
+            <View className="w-20 h-20 rounded-3xl bg-[#F3F4F6] items-center justify-center mb-4">
+              <Icon name="book" size={32} color='#9CA3AF' />
+            </View>
+            <Text className="text-[17px] font-semibold text-[#111827] text-center">
+              {activeTab === 'Personal' ? 'No personal duas' : 'No shared duas'}
+            </Text>
+            <Text className="text-[14px] text-[#6B7280] text-center mt-2">
+              {activeTab === 'Personal' ? 'Add your personal supplications' : 'Share a dua with your spouse'}
+            </Text>
           </View>
         ) : (
-          <View className="px-5 gap-4 pb-4">
-            {filteredDuas.map((dua) => (
-              <DuaCard
-                key={dua.id}
-                dua={dua}
-                onToggleAnswered={() => handleToggleAnswered(dua.id)}
-                onDelete={() => handleDelete(dua.id)}
+          <View style={{ gap: 12 }}>
+            {filtered.map(dua => (
+              <DuaCard key={dua.id} dua={dua}
+                onToggleAnswered={() => setDuas(prev => prev.map(d => d.id === dua.id ? { ...d, answered: !d.answered } : d))}
+                onDelete={() => Alert.alert('Delete Dua', 'Are you sure?', [
+                  { text: 'Cancel', style: 'cancel' },
+                  { text: 'Delete', style: 'destructive', onPress: () => setDuas(prev => prev.filter(d => d.id !== dua.id)) },
+                ])}
               />
             ))}
           </View>
         )}
-      </ScreenWrapper>
+      </ScrollView>
 
-      <TouchableOpacity
-        onPress={() => router.push('/more/adddua')}
-        activeOpacity={0.8}
+      <TouchableOpacity onPress={() => router.push('/more/adddua')} activeOpacity={0.8}
         className="absolute bg-primary w-14 h-14 rounded-full items-center justify-center"
-        style={{
-          bottom: 20,
-          right: 20,
-          shadowColor: colors.primary,
-          shadowOffset: { width: 0, height: 4 },
-          shadowOpacity: 0.35,
-          shadowRadius: 8,
-          elevation: 6,
-        }}
+        style={{ bottom: 100, right: 24, shadowColor: '#0F9D8A', shadowOffset: { width: 0, height: 6 }, shadowOpacity: 0.4, shadowRadius: 12, elevation: 8 }}
       >
-        <Icon name="add" size={24} color={colors.white} />
+        <Icon name="add" size={24} color='#FFFFFF' />
       </TouchableOpacity>
     </View>
   );

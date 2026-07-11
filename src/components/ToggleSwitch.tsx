@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, Switch } from 'react-native';
-import { colors } from '../constants/colors';
 
 interface ToggleSwitchProps {
   value: boolean;
@@ -9,25 +8,19 @@ interface ToggleSwitchProps {
   description?: string;
 }
 
-const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
-  value,
-  onValueChange,
-  label,
-  description,
-}) => {
+const ToggleSwitch: React.FC<ToggleSwitchProps> = ({ value, onValueChange, label, description }) => {
   return (
-    <View className="flex-row items-center justify-between py-3.5 border-b border-borderLight">
+    <View className="flex-row items-center justify-between py-3.5">
       <View className="flex-1 mr-4">
-        <Text className="text-base font-semibold text-ink">{label}</Text>
-        {description && (
-          <Text className="text-xs text-muted mt-0.5">{description}</Text>
-        )}
+        <Text className="text-[15px] font-semibold text-[#111827]">{label}</Text>
+        {description && <Text className="text-[12px] text-[#6B7280] mt-0.5 leading-4">{description}</Text>}
       </View>
       <Switch
         value={value}
         onValueChange={onValueChange}
-        trackColor={{ false: colors.surface, true: colors.primary + '60' }}
-        thumbColor={value ? colors.primary : colors.muted}
+        trackColor={{ false: '#E5E7EB', true: '#0F9D8A50' }}
+        thumbColor={value ? '#0F9D8A' : '#9CA3AF'}
+        ios_backgroundColor='#E5E7EB'
       />
     </View>
   );

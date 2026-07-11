@@ -1,50 +1,36 @@
 import React, { useState } from 'react';
-import { View, Text, Alert } from 'react-native';
-import ScreenWrapper from '../../components/ScreenWrapper';
-import AppButton from '../../components/AppButton';
-import GradientHeader from '../../components/GradientHeader';
+import { View, Text, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import MockMapCard from '../../components/MockMapCard';
 import ToggleSwitch from '../../components/ToggleSwitch';
 
 const LocationScreen: React.FC = () => {
   const [sharingEnabled, setSharingEnabled] = useState(true);
 
-  const handleToggleSharing = () => {
-    setSharingEnabled((prev) => !prev);
-  };
-
-  const handleRefresh = () => {
-    Alert.alert('Refresh', 'Location refreshed successfully');
-  };
-
   return (
-    <View className="flex-1 bg-surface">
-      <GradientHeader title="Live Location" />
-      <ScreenWrapper scroll background="surface" edges={['bottom']}>
-        <View className="pt-5 gap-4">
-          <MockMapCard
-            sharingEnabled={sharingEnabled}
-            onToggleSharing={handleToggleSharing}
-          />
+    <View className="flex-1 bg-[#F8FAFC]">
+      <ScrollView className="flex-1" contentContainerStyle={{ padding: 24, paddingBottom: 100 }}>
+        <View style={{ gap: 16 }}>
+          <MockMapCard sharingEnabled={sharingEnabled} onToggleSharing={() => setSharingEnabled(p => !p)} />
 
-          <Text className="text-xs text-muted text-center">
-            Last synced: 2 min ago
-          </Text>
+          <View className="flex-row items-center justify-center gap-1.5">
+            <View className="w-1.5 h-1.5 rounded-full bg-success" />
+            <Text className="text-[12px] text-[#6B7280]">Last synced: 2 min ago</Text>
+          </View>
 
-          <AppButton
-            title="Refresh Location"
-            variant="secondary"
-            onPress={handleRefresh}
-          />
+          <TouchableOpacity onPress={() => Alert.alert('Refresh', 'Location refreshed')} activeOpacity={0.85}
+            className="h-[52px] rounded-2xl bg-white items-center justify-center border border-[#E5E7EB]"
+          >
+            <Text className="text-primary text-[15px] font-semibold">Refresh Location</Text>
+          </TouchableOpacity>
 
-          <ToggleSwitch
-            value={sharingEnabled}
-            onValueChange={setSharingEnabled}
-            label="Location Sharing"
-            description="Allow your spouse to see your live location"
-          />
+          <View className="bg-white rounded-3xl px-4"
+            style={{ shadowColor: 'rgba(0,0,0,0.04)', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 1, shadowRadius: 8, elevation: 1 }}
+          >
+            <ToggleSwitch value={sharingEnabled} onValueChange={setSharingEnabled}
+              label="Location Sharing" description="Allow your spouse to see your live location" />
+          </View>
         </View>
-      </ScreenWrapper>
+      </ScrollView>
     </View>
   );
 };

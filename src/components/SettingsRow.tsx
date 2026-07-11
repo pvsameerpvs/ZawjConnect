@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Icon from './Icon';
-import { colors } from '../constants/colors';
 
 interface SettingsRowProps {
   title: string;
@@ -13,32 +12,20 @@ interface SettingsRowProps {
 }
 
 const SettingsRow: React.FC<SettingsRowProps> = ({
-  title,
-  subtitle,
-  icon,
-  onPress,
-  rightElement,
-  iconColor = colors.primary,
+  title, subtitle, icon, onPress, rightElement, iconColor = '#0F9D8A',
 }) => {
   const Container = onPress ? TouchableOpacity : View;
 
   return (
-    <Container
-      onPress={onPress}
-      activeOpacity={onPress ? 0.7 : 1}
-      className="flex-row items-center py-3.5 border-b border-borderLight"
-    >
-      <View
-        className="w-9 h-9 rounded-xl items-center justify-center"
-        style={{ backgroundColor: iconColor + '12' }}
-      >
-        <Icon name={icon} size={16} color={iconColor} />
+    <Container onPress={onPress} activeOpacity={onPress ? 0.7 : 1} className="flex-row items-center py-3.5">
+      <View className="w-11 h-11 rounded-2xl items-center justify-center" style={{ backgroundColor: iconColor + '12' }}>
+        <Icon name={icon} size={20} color={iconColor} />
       </View>
-      <View className="flex-1 ml-3">
-        <Text className="text-base font-semibold text-ink">{title}</Text>
-        {subtitle && <Text className="text-xs text-muted mt-0.5">{subtitle}</Text>}
+      <View className="flex-1 ml-4">
+        <Text className="text-[15px] font-semibold text-[#111827]">{title}</Text>
+        {subtitle && <Text className="text-[12px] text-[#6B7280] mt-0.5">{subtitle}</Text>}
       </View>
-      {rightElement || (onPress && <Icon name="chevron-forward" size={16} color={colors.muted} />)}
+      {rightElement || (onPress && <Icon name="chevron" size={18} color='#9CA3AF' />)}
     </Container>
   );
 };

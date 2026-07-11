@@ -1,102 +1,56 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { colors } from '../../constants/colors';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { mockChecklistItems } from '../../constants/mockData';
-import ScreenWrapper from '../../components/ScreenWrapper';
-import AppButton from '../../components/AppButton';
 import IslamicCard from '../../components/IslamicCard';
-import GradientHeader from '../../components/GradientHeader';
-import SectionHeader from '../../components/SectionHeader';
 import ProgressRing from '../../components/ProgressRing';
 import ChecklistCard from '../../components/ChecklistCard';
 
-type Tab = 'Hajj' | 'Umrah';
-
 const HajjUmrahScreen: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<Tab>('Hajj');
+  const [activeTab, setActiveTab] = useState<'Hajj' | 'Umrah'>('Hajj');
   const [completedIds, setCompletedIds] = useState<Set<string>>(new Set());
-
-  const totalItems = mockChecklistItems.length;
-  const completedCount = completedIds.size;
-  const progress = totalItems > 0 ? completedCount / totalItems : 0;
-
-  const handleToggle = (id: string) => {
-    setCompletedIds((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) {
-        next.delete(id);
-      } else {
-        next.add(id);
-      }
-      return next;
-    });
-  };
-
-  const handleReset = () => {
-    setCompletedIds(new Set());
-  };
+  const progress = mockChecklistItems.length > 0 ? completedIds.size / mockChecklistItems.length : 0;
 
   return (
-    <View className="flex-1 bg-surface">
-      <GradientHeader title="Hajj & Umrah" />
-      <ScreenWrapper scroll background="surface" edges={['bottom']}>
-        <View className="pt-5 gap-4">
-          <IslamicCard>
-            <View className="items-center py-2">
-              <ProgressRing progress={progress} size={96} strokeWidth={8} label="Overall Progress" />
-              <Text className="text-sm text-muted mt-2">
-                {completedCount}/{totalItems} items completed
-              </Text>
+    <ScrollView className="flex-1 bg-[#F8FAFC]" contentContainerStyle={{ padding: 24, paddingBottom: 100 }}>
+      <View style={{ gap: 16 }}>
+        <IslamicCard variant="elevated">
+          <View className="items-center py-3">
+            <ProgressRing progress={progress} size={96} strokeWidth={8} label="Overall Progress" />
+            <View className="flex-row items-center mt-3">
+              <Text className="text-[28px] font-bold text-[#111827] tracking-tight">{completedIds.size}</Text>
+              <Text className="text-[14px] text-[#6B7280] ml-1">/ {mockChecklistItems.length} items</Text>
             </View>
-          </IslamicCard>
-
-          <View className="flex-row bg-surface rounded-2xl p-1">
-            {(['Hajj', 'Umrah'] as const).map((tab) => (
-              <TouchableOpacity
-                key={tab}
-                onPress={() => setActiveTab(tab)}
-                activeOpacity={0.7}
-                className={`flex-1 py-3 rounded-xl items-center ${
-                  activeTab === tab ? 'bg-white' : ''
-                }`}
-                style={
-                  activeTab === tab
-                    ? { shadowColor: colors.cardShadow, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 1, shadowRadius: 4, elevation: 2 }
-                    : {}
-                }
-              >
-                <Text
-                  className={`text-sm font-semibold ${
-                    activeTab === tab ? 'text-primary' : 'text-muted'
-                  }`}
-                >
-                  {tab}
-                </Text>
-              </TouchableOpacity>
-            ))}
           </View>
+        </IslamicCard>
 
-          <SectionHeader title={`${activeTab} Checklist`} />
-
-          {mockChecklistItems.map((item) => (
-            <ChecklistCard
-              key={item.id}
-              item={item}
-              completed={completedIds.has(item.id)}
-              onToggle={() => handleToggle(item.id)}
-            />
+        <View className="flex-row bg-white rounded-2xl p-1.5 border border-[#E5E7EB]">
+          {(['Hajj', 'Umrah'] as const).map(tab => (
+            <TouchableOpacity key={tab} onPress={() => setActiveTab(tab)} activeOpacity={0.7}
+              className={`flex-1 py-3 rounded-xl items-center ${activeTab === tab ? 'bg-primary' : ''}`}
+              style={activeTab === tab ? { shadowColor: '#0F9D8A', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.25, shadowRadius: 6, elevation: 3 } : {}}
+            >
+              <Text className={`text-[14px] font-bold tracking-wide ${activeTab === tab ? 'text-white' : 'text-[#6B7280]'}`}>{tab}</Text>
+            </TouchableOpacity>
           ))}
-
-          {completedCount > 0 && (
-            <AppButton
-              title="Reset Progress"
-              variant="ghost"
-              onPress={handleReset}
-            />
-          )}
         </View>
-      </ScreenWrapper>
-    </View>
+
+        <Text className="text-[20px] font-bold text-[#111827] tracking-tight">{activeTab} Checklist</Text>
+
+        {mockChecklistItems.map(item => (
+          <ChecklistCard key={item.id} item={item} completed={completedIds.has(item.id)}
+            onToggle={() => setCompletedIds(prev => { const n = new Set(prev); n.has(item.id) ? n.delete(item.id) : n.add(item.id); return n; })}
+          />
+        ))}
+
+        {completedIds.size > 0 && (
+          <TouchableOpacity onPress={() => setCompletedIds(new Set())} activeOpacity={0.7}
+            className="py-3 rounded-2xl items-center bg-primary/8"
+          >
+            <Text className="text-[14px] font-semibold text-primary">Reset Progress</Text>
+          </TouchableOpacity>
+        )}
+      </View>
+    </ScrollView>
   );
 };
 

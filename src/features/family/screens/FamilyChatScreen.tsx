@@ -14,46 +14,29 @@ export default function FamilyChatScreen() {
   const { state, dispatch, getMember } = useFamily();
   const [text, setText] = useState('');
   const flatListRef = useRef<FlatList>(null);
-
   const sortedMessages = [...state.chatMessages].sort((a, b) => a.timestamp - b.timestamp);
 
   const handleSend = () => {
     if (!text.trim()) return;
-    dispatch({
-      type: 'ADD_CHAT_MESSAGE',
-      payload: {
-        id: Date.now().toString(),
-        senderId: state.currentUserId,
-        text: text.trim(),
-        timestamp: Date.now(),
-        type: 'text',
-      },
-    });
+    dispatch({ type: 'ADD_CHAT_MESSAGE', payload: { id: Date.now().toString(), senderId: state.currentUserId, text: text.trim(), timestamp: Date.now(), type: 'text' } });
     setText('');
   };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-      className="flex-1 bg-surface"
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : insets.bottom}
-    >
-      <LinearGradient
-        colors={[colors.ink, colors.primaryDark]}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={{ paddingTop: insets.top + 16, paddingBottom: 12 }}
-      >
-        <View className="px-5 flex-row items-center">
-          <TouchableOpacity onPress={() => router.back()} className="w-9 h-9 rounded-full bg-white/10 items-center justify-center mr-3">
-            <Icon name="chevron-back" size={20} color={colors.white} />
-          </TouchableOpacity>
-          <View className="w-10 h-10 rounded-full bg-white/10 items-center justify-center mr-3 border border-white/20">
-            <Icon name="message-circle-outline" size={20} color={colors.accentLight} />
-          </View>
-          <View className="flex-1">
-            <Text className="text-white text-base font-bold">{state.familyName}</Text>
-            <Text className="text-white/50 text-xs">{state.members.length} members · {state.chatMessages.length} messages</Text>
+    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} className="flex-1 bg-[#F8FAFC]" keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : insets.bottom}>
+      <LinearGradient colors={[colors.ink, colors.primaryDark]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
+        <View style={{ paddingTop: insets.top + 16, paddingBottom: 16, paddingHorizontal: 24 }}>
+          <View className="flex-row items-center">
+            <TouchableOpacity onPress={() => router.back()} className="w-9 h-9 rounded-full bg-white/10 items-center justify-center mr-3">
+              <Icon name="chevron-back" size={20} color='#FFFFFF' />
+            </TouchableOpacity>
+            <View className="w-10 h-10 rounded-full bg-white/10 items-center justify-center mr-3 border border-white/20">
+              <Icon name="chat" size={20} color={colors.accentLight} />
+            </View>
+            <View className="flex-1">
+              <Text className="text-white text-[16px] font-bold tracking-tight">{state.familyName}</Text>
+              <Text className="text-white/50 text-[12px]">{state.members.length} members · {state.chatMessages.length} messages</Text>
+            </View>
           </View>
         </View>
       </LinearGradient>
@@ -65,54 +48,29 @@ export default function FamilyChatScreen() {
         contentContainerStyle={{ padding: 16 }}
         onContentSizeChange={() => flatListRef.current?.scrollToEnd({ animated: false })}
         renderItem={({ item }) => (
-          <ChatBubble
-            message={item}
-            onGroceryPress={(listId) => router.push(`/(tabs)/family/grocerydetail?id=${listId}`)}
-            onExpensePress={() => router.push('/(tabs)/family/expenses')}
-          />
+          <ChatBubble message={item} onGroceryPress={(lid) => router.push(`/(tabs)/family/grocerydetail?id=${lid}`)} onExpensePress={() => router.push('/(tabs)/family/expenses')} />
         )}
         ListEmptyComponent={
-          <View className="py-16 items-center">
-            <View className="w-16 h-16 rounded-2xl bg-primary/10 items-center justify-center mb-4">
-              <Icon name="message-circle-outline" size={32} color={colors.primary} />
+          <View className="py-20 items-center">
+            <View className="w-16 h-16 rounded-3xl bg-primary/10 items-center justify-center mb-4">
+              <Icon name="chat" size={32} color='#0F9D8A' />
             </View>
-            <Text className="text-base font-semibold text-ink mb-1">No messages yet</Text>
-            <Text className="text-sm text-muted text-center px-10">
-              Start your family conversation! Share grocery lists, expenses, and updates.
-            </Text>
+            <Text className="text-[17px] font-bold text-[#111827] mb-1 tracking-tight">No messages yet</Text>
+            <Text className="text-[14px] text-[#6B7280] text-center px-12 leading-5">Start your family conversation! Share grocery lists, expenses, and updates.</Text>
           </View>
         }
       />
 
-      <View className="px-4 py-3 border-t border-border bg-white"
-        style={{ paddingBottom: insets.bottom + 12 }}
-      >
-        <View className="flex-row items-center bg-surface rounded-2xl px-4 py-1 border border-border">
-          <TextInput
-            value={text}
-            onChangeText={setText}
-            placeholder="Type a message..."
-            placeholderTextColor={colors.muted}
-            className="flex-1 text-base text-ink py-2.5"
-            multiline={false}
-            onSubmitEditing={handleSend}
-            returnKeyType="send"
+      <View className="px-4 py-3 border-t border-[#E5E7EB] bg-white" style={{ paddingBottom: insets.bottom + 12 }}>
+        <View className="flex-row items-center bg-[#F8FAFC] rounded-2xl px-4 py-1 border border-[#E5E7EB]">
+          <TextInput value={text} onChangeText={setText} placeholder="Type a message..." placeholderTextColor='#9CA3AF'
+            className="flex-1 text-[15px] text-[#111827] py-2.5" multiline={false} onSubmitEditing={handleSend} returnKeyType="send"
           />
-          <TouchableOpacity
-            onPress={handleSend}
-            disabled={!text.trim()}
-            className={`w-10 h-10 rounded-xl items-center justify-center ml-2 ${
-              text.trim() ? 'bg-primary' : 'bg-surface'
-            }`}
-            style={text.trim() ? {
-              shadowColor: colors.primary,
-              shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 0.3,
-              shadowRadius: 4,
-              elevation: 3,
-            } : {}}
+          <TouchableOpacity onPress={handleSend} disabled={!text.trim()}
+            className={`w-10 h-10 rounded-2xl items-center justify-center ml-2 ${text.trim() ? 'bg-primary' : 'bg-[#F3F4F6]'}`}
+            style={text.trim() ? { shadowColor: '#0F9D8A', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.3, shadowRadius: 4, elevation: 3 } : {}}
           >
-            <Icon name="send-outline" size={18} color={text.trim() ? colors.white : colors.muted} />
+            <Icon name="send" size={20} color={text.trim() ? '#FFFFFF' : '#9CA3AF'} />
           </TouchableOpacity>
         </View>
       </View>

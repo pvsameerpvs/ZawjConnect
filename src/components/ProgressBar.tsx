@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { colors } from '../constants/colors';
 
 interface ProgressBarProps {
   progress: number;
@@ -10,33 +9,20 @@ interface ProgressBarProps {
 }
 
 const ProgressBar: React.FC<ProgressBarProps> = ({
-  progress,
-  label,
-  color = colors.primary,
-  showPercentage = false,
+  progress, label, color = '#0F9D8A', showPercentage = false,
 }) => {
-  const clampedProgress = Math.min(Math.max(progress, 0), 1);
+  const clamped = Math.min(Math.max(progress, 0), 1);
 
   return (
     <View className="w-full">
       {(label || showPercentage) && (
-        <View className="flex-row justify-between items-center mb-1.5">
-          {label && <Text className="text-xs text-muted font-medium">{label}</Text>}
-          {showPercentage && (
-            <Text className="text-xs font-semibold" style={{ color }}>
-              {Math.round(clampedProgress * 100)}%
-            </Text>
-          )}
+        <View className="flex-row justify-between items-center mb-2">
+          {label && <Text className="text-[13px] text-[#6B7280] font-medium">{label}</Text>}
+          {showPercentage && <Text className="text-[13px] font-bold" style={{ color }}>{Math.round(clamped * 100)}%</Text>}
         </View>
       )}
-      <View className="h-2 bg-surface rounded-full overflow-hidden">
-        <View
-          className="h-full rounded-full"
-          style={{
-            width: `${clampedProgress * 100}%`,
-            backgroundColor: color,
-          }}
-        />
+      <View className="h-[6px] bg-[#F3F4F6] rounded-full overflow-hidden">
+        <View className="h-full rounded-full" style={{ width: `${clamped * 100}%`, backgroundColor: color }} />
       </View>
     </View>
   );
